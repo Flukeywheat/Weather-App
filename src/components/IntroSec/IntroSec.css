@@ -1,0 +1,76 @@
+.jumbotron{
+   
+    overflow: hidden;
+    padding-bottom: 30px;
+}
+
+
+.warmSkyGrad{
+    background-image: linear-gradient(aquamarine, rgb(230, 245, 143), white );
+}
+
+.stormSkyGrad{
+    background-image: linear-gradient(black, rgb(33, 27, 82), white );
+}
+
+.coldSkyGrad{
+    background-image: linear-gradient( rgb(99, 78, 253), rgb(207, 207, 252), white );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1 {
+    margin-top: 50px;
+    padding: 40px 0px;
+}
+p{
+    margin: auto;
+    padding: 0 40px;
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.h1FadeIn{
+    z-index: 1;
+    animation: scaleUp 2.5s forwards;  
+}
+.pFadeIn{
+    animation: scaleUp 2.5s  2.5s forwards;
+}
+
+
+@keyframes scaleUp{
+    from{ transform: scale(1)}
+    to{ transform: scale(2.5);}
+
+}
+
+
+ 
+
