@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import NavBar from "./components/NavBar/NavBar";
+
 import linksToArr from  "./components/Helper/GroupLinks";
+
 import IntroDiv from "./components/IntroSec/IntroSec";
+import NavBar from "./components/NavBar/NavBar";
+
+
+
+
 
 
 
@@ -25,34 +31,53 @@ const tmpObject = linksToArr(tstTitles, tstLinks);
 
 
 
-
 class App extends Component {
 
   
 
+  constructor(props) {
+    super(props);
 
-
-
-  
-
-  state = {
-    name: {
-      fName: "Zach", key: "1"
+    this.state = {
+      name: {
+        fName: "Zach", key: "1"
+      },
+      error: null,
+      apiLoad: false,
+      apItems: null,
+      lat: null,
+      long: null
     }
-    
+
+    this.getLocation();
   }
 
 
- 
+
+
+
+
+
+
+
 
 
   
+
+
+  
+
+  
+
+ 
+
 
   render(){
     return (
       <div className="App">
         <NavBar links = {tmpObject} />
         <IntroDiv click = {this.btnClick} name = {this.state.name.fName}/>
+        <p>{this.state.long}</p>
       </div>
     );
   }
@@ -62,7 +87,24 @@ class App extends Component {
 
 
 
+getLocation = () =>{
 
+  if ( navigator.geolocation )
+  {
+
+      navigator.geolocation.getCurrentPosition( (position) =>{
+      const tmplat = position.coords.latitude;
+      const tmplong = position.coords.longitude;
+
+      this.setState( { 
+        lat: tmplat,
+        long: tmplong
+      })
+    })
+  }
+
+
+}
 
 
 
