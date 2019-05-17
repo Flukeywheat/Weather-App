@@ -8,6 +8,8 @@ import IntroDiv from "./components/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
 
 
+import Weather from "./components/Weather/Weather";
+
 
 
 
@@ -44,12 +46,8 @@ class App extends Component {
       },
       error: null,
       apiLoad: false,
-      apItems: null,
-      lat: null,
-      long: null
+      apItems: null
     }
-
-    this.getLocation();
   }
 
 
@@ -77,7 +75,7 @@ class App extends Component {
       <div className="App">
         <NavBar links = {tmpObject} />
         <IntroDiv click = {this.btnClick} name = {this.state.name.fName}/>
-        <p>{this.state.long}</p>
+        <Weather />
       </div>
     );
   }
@@ -87,24 +85,11 @@ class App extends Component {
 
 
 
-getLocation = () =>{
-
-  if ( navigator.geolocation )
-  {
-
-      navigator.geolocation.getCurrentPosition( (position) =>{
-      const tmplat = position.coords.latitude;
-      const tmplong = position.coords.longitude;
-
-      this.setState( { 
-        lat: tmplat,
-        long: tmplong
-      })
-    })
-  }
 
 
-}
+
+
+
 
 
 
