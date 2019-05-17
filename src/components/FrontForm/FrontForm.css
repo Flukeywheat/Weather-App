@@ -1,0 +1,21 @@
+.boxShade{
+  margin: 10px 20% 30px;
+  padding: 5px;
+  padding-bottom: 100px;
+  display: block;
+  box-shadow: -12px 15px 30px -12px rgba(0,0,0,0.75);
+  transform: scale(0);
+  animation: scaledUp 2.5s  2.5s forwards}
+
+
+.Notice{
+    
+}
+
+
+
+@keyframes scaledUp{
+    from{ transform: scale(0)}
+    to{ transform: scale(1);}
+
+}

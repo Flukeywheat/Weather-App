@@ -3,3 +3,9 @@
 a, li{
     color: aliceblue;
 }
+
+
+ul{
+    margin-left: auto;
+    margin-right: 10%;
+}

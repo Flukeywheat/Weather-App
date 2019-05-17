@@ -6,10 +6,7 @@ import linksToArr from  "./components/Helper/GroupLinks";
 
 import IntroDiv from "./components/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
-
-
-import Weather from "./components/Weather/Weather";
-
+import FrontForm from  "./components/FrontForm/FrontForm";
 
 
 
@@ -19,8 +16,10 @@ import Weather from "./components/Weather/Weather";
 
 
 
-const tstTitles = ["this", "is", "a", "test"];
-const tstLinks = ["/djkdjkjfikdkjfk", "jkdkjfiijek", "jdivjijd", "jdiifjeifiji"];
+
+
+const tstTitles = ["Login", "Sign Up"];
+const tstLinks = ["/djkdjkjfikdkjfk", "jkdkjfiijek"];
 
 const tmpObject = linksToArr(tstTitles, tstLinks);
 
@@ -75,7 +74,7 @@ class App extends Component {
       <div className="App">
         <NavBar links = {tmpObject} />
         <IntroDiv click = {this.btnClick} name = {this.state.name.fName}/>
-        <Weather />
+        <FrontForm />
       </div>
     );
   }

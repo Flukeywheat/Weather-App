@@ -16,29 +16,23 @@ class Weather extends Component{
 
 
     
-    
-    async componentDidMount()
-    {
-        await Promise.all([this.getLocation(), this.weatherAPI()])
+    componentWillMount(){
+        this.getLocation()
+    }
+   
 
-
-        
-        
-       
-
-        
-
-        
+    componentDidMount(){
+        console.log(this.state.lat);
+        fetch("https://api.weather.gov").then((res) =>{
+            
+        });
     }
 
 
 
     render(){
         return(
-            <div>
-                <p>Latitude: {this.state.lat}</p>
-                <p>Longitude: {this.state.long}</p>
-            </div>
+            <div></div>
         )
     }
 
@@ -62,20 +56,12 @@ class Weather extends Component{
          
             })
         }
-        
+        return true;
 
     }
 
 
-    weatherAPI = () =>{
-        console.log(this.state.lat);
-        fetch("https://api.weather.gov").then( (res) =>{
-                
-                console.log(this.state.lat);
-                
-                
-            })
-    }
+    
 
 }
 

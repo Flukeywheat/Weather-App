@@ -44,7 +44,7 @@ const NavBar = (props) =>{
         
             <a href="/" className = "navbar-brand">What Are You Wearing?!! {newday}</a>
             <div className = "collapse navbar-collapse" >
-                <ul className = " navbar-nav mr-auto" >
+                <ul className = " navbar-nav " >
                 {listItems}
                
                 </ul>

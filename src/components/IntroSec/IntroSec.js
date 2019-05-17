@@ -8,7 +8,7 @@ const IntroDiv = (props) =>{
     return (
         <div className = "jumbotron coldSkyGrad">
             <h1  className = "h1FadeIn ">Hi</h1>
-            <p className = "pFadeIn ">Based on current metrics, Summer Clothes are recommended today</p>
+            <p className = "pFadeIn ">Based on current metrics, Winter Clothes are recommended today</p>
         </div>
     );
 }
