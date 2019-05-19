@@ -6,8 +6,15 @@
 
 
 .warmSkyGrad{
-    background-image: linear-gradient(aquamarine, rgb(230, 245, 143), white );
+    background-image: linear-gradient(rgb(199, 133, 95), rgb(230, 245, 143), white );
 }
+
+
+.chillySkyGrad{
+    background-image: linear-gradient(rgb(52, 116, 133), rgb(240, 243, 194), white );
+
+}
+
 
 .stormSkyGrad{
     background-image: linear-gradient(black, rgb(33, 27, 82), white );

@@ -1,12 +1,53 @@
 import React from "react";
-import "./IntroSec.css";
+import  "./IntroSec.css";
 
-const IntroDiv = (props) =>{
-    
+const IntroSec= (props) =>{
+
+    const tempKey = props.weather;
+    let cssString;
+
+
+
+
+
+
+
+
+    let BackColorClass = ["jumbotron"];
+
+    if ( tempKey === "freeze" )
+    {
+        BackColorClass.push("coldSkyGrad");
+    }
+    else if ( tempKey === "chill")
+    {
+        BackColorClass.push("chillySkyGrad");
+    }
+    else if ( tempKey === "storm")
+    {
+        BackColorClass.push("stormSkyGrad");
+    }
+    else
+    {
+        BackColorClass.push("warmSkyGrad");
+    }
+    cssString =  BackColorClass.join(" ");
+        
+
+
+
+
+
+
+
+
+
+
+
 
 
     return (
-        <div className = "jumbotron coldSkyGrad">
+        <div className = {cssString}>
             <h1  className = "h1FadeIn ">Hi</h1>
             <p className = "pFadeIn ">Based on current metrics, Winter Clothes are recommended today</p>
         </div>
@@ -14,29 +55,4 @@ const IntroDiv = (props) =>{
 }
 
 
-const changePar = (name) =>{
-    const myName = "Zaen";
-    let parString;
-    
-
-    if (name.toUpperCase() === myName.toUpperCase())
-    {
-        parString = "Not Really, I'm just messing with ya!!";
-    }
-    else
-    {
-        parString = "It truly is a travesty to meet you!!";
-        
-    }
-    return (
-        <p className = "muted-text">{parString}</p>
-    )
-
-
-}
-
-
-
-
-
-export default IntroDiv;
+export default IntroSec;

@@ -6,6 +6,7 @@ import linksToArr from  "./components/Helper/GroupLinks";
 
 import IntroDiv from "./components/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
+import Weather from "./components/Weather/Weather";
 import FrontForm from  "./components/FrontForm/FrontForm";
 
 
@@ -43,9 +44,7 @@ class App extends Component {
       name: {
         fName: "Zach", key: "1"
       },
-      error: null,
-      apiLoad: false,
-      apItems: null
+      weatherColors: null
     }
   }
 
@@ -73,7 +72,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar links = {tmpObject} />
-        <IntroDiv click = {this.btnClick} name = {this.state.name.fName}/>
+        <IntroDiv weather = {this.state.weatherColors} click = {this.btnClick} name = {this.state.name.fName}/>
+        <Weather />
         <FrontForm />
       </div>
     );

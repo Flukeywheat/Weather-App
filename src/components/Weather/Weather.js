@@ -1,4 +1,6 @@
 import React,{Component} from "react";
+import axios from "axios";
+import { logicalExpression } from "@babel/types";
 
 
 
@@ -16,16 +18,26 @@ class Weather extends Component{
 
 
     
-    componentWillMount(){
-        this.getLocation()
-    }
-   
+    
 
     componentDidMount(){
-        console.log(this.state.lat);
-        fetch("https://api.weather.gov").then((res) =>{
+        
+        getAddress().then( (res) =>{
+           const tmpLat = res.latitude;
+           const tmpLong = res.longitude;
+
+           const weatherApi = "https://api.weather.gov/points/" + tmpLat + "," + tmpLong + "/forecast";
+           console.log(weatherApi);
+           
+           
             
-        });
+            axios.get(weatherApi).then( (res) =>{
+                console.log(res);
+                
+            })
+        })
+
+        
     }
 
 
@@ -40,29 +52,20 @@ class Weather extends Component{
 
 
 
-    getLocation = () =>{
-
-
-        if ( navigator.geolocation )
-        {
-            navigator.geolocation.getCurrentPosition((position) =>{
-                const tmpLat = position.coords.latitude;
-                const tmpLong = position.coords.longitude;
-
-                this.setState({
-                    lat: tmpLat,
-                    long: tmpLong
-                })
-         
-            })
-        }
-        return true;
-
-    }
-
-
-    
-
+ 
 }
 
 export default Weather;
+
+
+
+ function getAddress(){
+
+    return new Promise( (res, rej) =>{
+        navigator.geolocation.getCurrentPosition( (pos) =>{
+            res(pos.coords);
+        });
+    });
+    
+    }
+
