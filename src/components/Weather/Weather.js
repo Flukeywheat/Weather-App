@@ -8,9 +8,8 @@ class Weather extends Component{
     constructor(props){
         super(props);
         this.state = {
-            lat:null,
-            long:null,
-            tst:null
+            curTemp:null,
+            forcast:null
         }
         
         
@@ -27,12 +26,51 @@ class Weather extends Component{
            const tmpLong = res.longitude;
 
            const weatherApi = "https://api.weather.gov/points/" + tmpLat + "," + tmpLong + "/forecast";
-           console.log(weatherApi);
+           
            
            
             
             axios.get(weatherApi).then( (res) =>{
-                console.log(res);
+
+
+                const foreCastArr = [];
+               
+
+
+                const periodsOfDay =  res.data.properties.periods;
+                const dayNight = periodsOfDay[0].isDaytime; //Checking to see if daytime 
+                const perNums = ( dayNight ) ? 2 : 3;
+
+
+
+                console.log(perNums);
+                
+
+                for (let i = 0; i < perNums; i++)
+                {
+                    foreCastArr.push(periodsOfDay[i]);
+                    if ( !dayNight && i === 0 )
+                    {
+                        const temp = "Current temperature: " + periodsOfDay[0].temperature + "°F";
+                        const tmpString = "Tonight's forecast: " + periodsOfDay[0].detailedForecast; 
+
+
+
+                        this.setState({
+                            curTemp: temp,
+                            forcast: tmpString
+                        })
+                    }
+                    else
+                    {
+
+                    }
+                }
+                
+
+                console.log(this.state.tst);
+                
+                console.log(res.data.properties.periods);
                 
             })
         })
@@ -44,7 +82,10 @@ class Weather extends Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <p>{this.state.curTemp}</p>
+                <p>{this.state.forcast}</p>
+            </div>
         )
     }
 
@@ -59,7 +100,25 @@ export default Weather;
 
 
 
- function getAddress(){
+
+
+
+
+
+const useWeatherAPi = (res) =>{
+
+
+
+
+}
+
+
+
+
+
+
+
+const  getAddress = () =>{
 
     return new Promise( (res, rej) =>{
         navigator.geolocation.getCurrentPosition( (pos) =>{
