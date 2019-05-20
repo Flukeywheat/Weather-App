@@ -3,12 +3,14 @@ import  "./IntroSec.css";
 
 const IntroSec= (props) =>{
 
+
     const tempKey = props.weather;
     let cssString;
+    
 
-
-
-
+    console.log("tst" + tempKey);
+    
+    
 
 
 
@@ -50,6 +52,7 @@ const IntroSec= (props) =>{
         <div className = {cssString}>
             <h1  className = "h1FadeIn ">Hi</h1>
             <p className = "pFadeIn ">Based on current metrics, Winter Clothes are recommended today</p>
+            
         </div>
     );
 }

@@ -4,7 +4,7 @@ import './App.css';
 
 import linksToArr from  "./components/Helper/GroupLinks";
 
-import IntroDiv from "./components/IntroSec/IntroSec";
+import IntroSec from "./components/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
 import Weather from "./components/Weather/Weather";
 import FrontForm from  "./components/FrontForm/FrontForm";
@@ -44,7 +44,7 @@ class App extends Component {
       name: {
         fName: "Zach", key: "1"
       },
-      weatherColors: null
+      weatherColors: null,
     }
   }
 
@@ -72,8 +72,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar links = {tmpObject} />
-        <IntroDiv weather = {this.state.weatherColors} click = {this.btnClick} name = {this.state.name.fName}/>
-        <Weather />
+        <IntroSec weather = {this.state.weatherColors} click = {this.btnClick} name = {this.state.name.fName}/>
+        <Weather sendData = {this.getWeatherData}/>
         <FrontForm />
       </div>
     );
@@ -90,7 +90,15 @@ class App extends Component {
 
 
 
-
+getWeatherData = (weatherData) =>{
+ 
+  
+  this.setState({
+    weatherColors: weatherData
+  })
+ 
+  
+}
 
 
 
