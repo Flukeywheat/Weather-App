@@ -25,7 +25,7 @@ class Weather extends Component{
 
         getAddress().then( (res) =>{
             this.useWeatherAPi(res);
-        }).then( this.sendWeatherData());
+        });
 
         
     }
@@ -105,7 +105,9 @@ class Weather extends Component{
                     }
                 }
                 
-
+             
+                
+                this.sendWeatherData(this.state.curTemp);
                 
                 
             })
