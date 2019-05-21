@@ -74,6 +74,7 @@ class Weather extends Component{
                 const dayNight = periodsOfDay[0].isDaytime; //Checking to see if daytime 
                 const perNums = ( dayNight ) ? 2 : 3;
                 const begTempString = "Current temperature: " + periodsOfDay[0].temperature + "°F";;
+                this.sendWeatherData(periodsOfDay[0].temperature);
 
 
 
@@ -107,7 +108,7 @@ class Weather extends Component{
                 
              
                 
-                this.sendWeatherData(this.state.curTemp);
+                
                 
                 
             })
@@ -141,6 +142,8 @@ const  getAddress = () =>{
 
     return new Promise( (res, rej) =>{
         navigator.geolocation.getCurrentPosition( (pos) =>{
+            console.log(pos);
+            
             res(pos.coords);
         });
     });

@@ -6,9 +6,10 @@ const IntroSec= (props) =>{
 
     const tempKey = props.weather;
     let cssString;
+    let clothRec;
     
 
-    console.log("tst" + tempKey);
+    
     
     
 
@@ -17,27 +18,31 @@ const IntroSec= (props) =>{
 
     let BackColorClass = ["jumbotron"];
 
-    if ( tempKey === "freeze" )
+    
+    if ( tempKey != null )
     {
-        BackColorClass.push("coldSkyGrad");
+            if ( tempKey  <=  32 )
+        {
+            BackColorClass.push("coldSkyGrad");
+            clothRec = "Winter"
+        }
+        else if ( tempKey <= 70)
+        {
+            BackColorClass.push("chillySkyGrad");
+            clothRec = "Mild Weather"
+        }
+        else
+        {
+            BackColorClass.push("warmSkyGrad");
+            clothRec = "Summer"
+        }
+        cssString =  BackColorClass.join(" ");
     }
-    else if ( tempKey === "chill")
-    {
-        BackColorClass.push("chillySkyGrad");
-    }
-    else if ( tempKey === "storm")
-    {
-        BackColorClass.push("stormSkyGrad");
-    }
-    else
-    {
-        BackColorClass.push("warmSkyGrad");
-    }
-    cssString =  BackColorClass.join(" ");
+    
         
 
 
-
+    
 
 
 
@@ -51,7 +56,7 @@ const IntroSec= (props) =>{
     return (
         <div className = {cssString}>
             <h1  className = "h1FadeIn ">Hi</h1>
-            <p className = "pFadeIn ">Based on current metrics, Winter Clothes are recommended today</p>
+            <p className = "pFadeIn ">Today's Recommendation: {clothRec} attire</p>
             
         </div>
     );
