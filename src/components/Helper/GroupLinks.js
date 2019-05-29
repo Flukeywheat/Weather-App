@@ -16,7 +16,7 @@ const groupLinks = (title, link) =>{
 
 
 
-const linksToArr = (titles, links) =>{
+const linksToArr = (titles) =>{
 
     const tmpArr = [];
 
@@ -24,7 +24,7 @@ const linksToArr = (titles, links) =>{
     {
         for (let  i = 0; i < titles.length; i++)
         {
-            const tmpObj = groupLinks(titles[i], links[i]);
+            const tmpObj = groupLinks(titles[i]);
             tmpArr.push(tmpObj);
         }
             return tmpArr;

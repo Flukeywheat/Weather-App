@@ -8,6 +8,7 @@ import IntroSec from "./components/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
 import Weather from "./components/Weather/Weather";
 import FrontForm from  "./components/FrontForm/FrontForm";
+import LoginForm from "./components/Authentication/LoginForm/LoginForm";
 
 
 
@@ -20,9 +21,8 @@ import FrontForm from  "./components/FrontForm/FrontForm";
 
 
 const tstTitles = ["Login", "Sign Up"];
-const tstLinks = ["/djkdjkjfikdkjfk", "jkdkjfiijek"];
 
-const tmpObject = linksToArr(tstTitles, tstLinks);
+const tmpObject = linksToArr(tstTitles);
 
 
 
@@ -45,6 +45,8 @@ class App extends Component {
         fName: "Zach", key: "1"
       },
       weatherColors: null,
+      loginActive: null,
+      SignupActive: null
     }
   }
 
@@ -69,19 +71,40 @@ class App extends Component {
 
 
   render(){
+    
+
     return (
       <div className="App">
-        <NavBar links = {tmpObject} />
-        <IntroSec weather = {this.state.weatherColors} click = {this.btnClick} name = {this.state.name.fName}/>
+        <NavBar 
+          signUpVis = {this.state.SignupActive} 
+          
+          sendData = {this.getClickStatus}
+          links = {tmpObject} 
+          />
+        <IntroSec weather = {this.state.weatherColors}  name = {this.state.name.fName}/>
         <Weather sendData = {this.getWeatherData}/>
         <FrontForm />
+        <LoginForm logVisible = {this.state.loginActive} />
       </div>
     );
   }
 
 
 
-
+getClickStatus = (logOrSign) =>{
+  if ( logOrSign )
+  {
+      this.setState({
+        loginActive: true
+      })
+  }
+  else
+  {
+    this.setState({
+      SignupActive: true
+    })
+  }
+}
 
 
 
@@ -91,34 +114,16 @@ class App extends Component {
 
 
 getWeatherData = (weatherData) =>{
- 
-  
   this.setState({
     weatherColors: weatherData
   })
- 
-  
 }
 
 
 
 
 
-btnClick = () =>{
-    const tmpName = this.state.name.fName;
-    const tmpKey = this.state.name.key;
-    
-    let nName = (tmpName === "Zaen") ? "Zach" : "Zaen";
-    
-    this.setState(
-      {
-        name: {
-          fName: nName, key: tmpKey
-      }
-      }
-    )
-    
-  };
+
 
 
 

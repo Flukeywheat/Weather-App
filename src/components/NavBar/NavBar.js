@@ -24,14 +24,16 @@ const getTodaysDate = () =>{
 const NavBar = (props) =>{
     
     const newday = getTodaysDate();
-
-
+    
+    
 
 
 
     let listItems =  props.links.map( (item) =>{
+        const linkName =  item.newTitle;
+        
          return (
-            <li className = "nav-item"> <a className = "nav-link" href= {item.newLink}>{item.newTitle}</a></li>
+            <li onClick = {props.sendData.bind(linkName)} className = "nav-item"> <a className = "nav-link" >{linkName}</a></li>
          )
      });
 
@@ -45,8 +47,7 @@ const NavBar = (props) =>{
             <a href="/" className = "navbar-brand">What Are You Wearing?!! {newday}</a>
             <div className = "collapse navbar-collapse" >
                 <ul className = " navbar-nav " >
-                {listItems}
-               
+                    {listItems}
                 </ul>
             </div>
         </nav>
@@ -55,11 +56,13 @@ const NavBar = (props) =>{
 
     );
 
+
+
+    
+    
+
 }
 
 
+
 export default NavBar;
-
-
-
-
