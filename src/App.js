@@ -77,7 +77,6 @@ class App extends Component {
       <div className="App">
         <NavBar 
           signUpVis = {this.state.SignupActive} 
-          
           sendData = {this.getClickStatus}
           links = {tmpObject} 
           />
