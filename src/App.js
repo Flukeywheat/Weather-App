@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Weather from "./components/Weather/Weather";
 import FrontForm from  "./components/FrontForm/FrontForm";
 import LoginForm from "./components/Authentication/LoginForm/LoginForm";
-
+import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
 
 
 
@@ -46,7 +46,8 @@ class App extends Component {
       },
       weatherColors: null,
       loginActive: null,
-      SignupActive: null
+      SignupActive: null,
+      hideIntroSec: null
     }
   }
 
@@ -80,10 +81,11 @@ class App extends Component {
           sendData = {this.getClickStatus}
           links = {tmpObject} 
           />
-        <IntroSec weather = {this.state.weatherColors}  name = {this.state.name.fName}/>
-        <Weather sendData = {this.getWeatherData}/>
+        <IntroSec hidden = {this.state.hideIntroSec} weather = {this.state.weatherColors}  name = {this.state.name.fName}/>
+        <Weather hidden = {this.state.hideIntroSec} sendData = {this.getWeatherData}/>
         <FrontForm />
         <LoginForm logVisible = {this.state.loginActive} />
+        <FrontPageHeader />
       </div>
     );
   }
@@ -94,13 +96,15 @@ getClickStatus = (logOrSign) =>{
   if ( logOrSign )
   {
       this.setState({
-        loginActive: true
+        loginActive: true,
+        hideIntroSec: true
       })
   }
   else
   {
     this.setState({
-      SignupActive: true
+      SignupActive: true,
+      hideIntroSec: true
     })
   }
 }
