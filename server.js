@@ -8,8 +8,8 @@ const app = express();
 
 
 passport.use(new googleStrategy({
-    clientID: keys.client_id,
-    clientSecret: keys.private_key,
+    clientID: keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
     callbackURL: "http://localhost:3000/auth/google/callback"
 }, async (token, tokenSecret, profile, done) =>{
     console.log(token);
