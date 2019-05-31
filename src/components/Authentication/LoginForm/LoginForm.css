@@ -101,8 +101,17 @@
     transition: all 0.3s ease-in-out;
   }
   
+  #login{
+    margin-top: 30px;
+  }
+
+  input[type=text]:hover{
+    background-color: rgb(241, 238, 238)
+  }
+
+
   input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: green;
+    background-color: rgb(30, 177, 30);
   }
   
   input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {

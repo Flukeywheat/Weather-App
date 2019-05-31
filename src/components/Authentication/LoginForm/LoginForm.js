@@ -18,7 +18,7 @@ const  LoginForm = (props) =>{
     return (
         <div id="formContent" className = {visibility}>
         <form action="" method="post">
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"/>
+          <input  id = "login" type="text" id="login" class="fadeIn second" name="login" placeholder="login"/>
           <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"/>
           <input type="submit" class="fadeIn fourth" value="Log In"/>
         </form>
