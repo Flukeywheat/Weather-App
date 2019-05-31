@@ -7,6 +7,7 @@
 
 .warmSkyGrad{
     background-image: linear-gradient(rgb(199, 133, 95), rgb(230, 245, 143), white );
+    
 }
 
 
@@ -24,6 +25,9 @@
     background-image: linear-gradient( rgb(99, 78, 253), rgb(207, 207, 252), white );
 }
 
+.fadeInBack{
+    animation: fadein 1s forwards;
+}
 
 
 
@@ -32,7 +36,10 @@
 
 
 
-
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 2.5; }
+}
 
 
 

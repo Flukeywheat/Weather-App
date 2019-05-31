@@ -17,7 +17,7 @@ const IntroSec= (props) =>{
 
 
 
-    let BackColorClass = ["jumbotron", display ];
+    let BackColorClass = ["jumbotron", "fadeInBack", display ];
 
     
     if ( tempKey != null )
