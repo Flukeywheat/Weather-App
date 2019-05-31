@@ -46,6 +46,7 @@
     padding: 30px;
     max-width: 450px;
     margin: auto;
+    margin-top: 40px;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -79,7 +80,7 @@
   /* FORM TYPOGRAPHY*/
   
   input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
+    background-color: rgb(124, 236, 124);
     border: none;
     color: white;
     padding: 15px 80px;
@@ -101,7 +102,7 @@
   }
   
   input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
+    background-color: green;
   }
   
   input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {

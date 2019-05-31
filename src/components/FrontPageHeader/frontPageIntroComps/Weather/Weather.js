@@ -10,8 +10,6 @@ class Weather extends Component{
             curTemp:null,
             forcast:null
         }
-        
-        
     }
 
 
