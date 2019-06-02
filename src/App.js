@@ -3,11 +3,7 @@ import './App.css';
 
 
 import linksToArr from  "./components/Helper/GroupLinks";
-
-import IntroSec from "./components/FrontPageHeader/frontPageIntroComps/IntroSec/IntroSec";
 import NavBar from "./components/NavBar/NavBar";
-import Weather from "./components/FrontPageHeader/frontPageIntroComps/Weather/Weather";
-import FrontForm from  "./components/FrontPageHeader/frontPageIntroComps/FrontForm/FrontForm";
 import LoginForm from "./components/Authentication/LoginForm/LoginForm";
 import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
 

@@ -70,7 +70,7 @@ p{
 
 .h1FadeIn{
     z-index: 1;
-    animation: scaleUp 2.5s forwards;  
+    animation: scaleUp 4s forwards;  
 }
 .pFadeIn{
     transform: scale(0);

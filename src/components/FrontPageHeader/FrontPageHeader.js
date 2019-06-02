@@ -21,15 +21,17 @@ class FrontPageHeader extends Component{
 
 
     render() {
-
-      const visible = (this.props.hidden) ? "hidden" : "visible";
+      let visible;
+      if ( this.props.hidden )  visible = "hidden";      
+      
 
 
         return(
         <div className = {visible}>
            <IntroSec weather = {this.state.weatherColors} />
+           <FrontForm />
             <Weather sendData = {this.getWeatherData} />
-            <FrontForm />
+            
         </div>
         );
 

@@ -156,7 +156,18 @@
   
   /* ANIMATIONS */
   
-  /* Simple CSS3 Fade-in-down Animation */
+  .slideUp{
+    position: relative;
+    top: 500px;
+    animation: slide 2.5s forwards;
+  }
+
+  @keyframes slide{
+    0% { top: 500;}
+    100% { top: 0;}
+  }
+
+
   .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
