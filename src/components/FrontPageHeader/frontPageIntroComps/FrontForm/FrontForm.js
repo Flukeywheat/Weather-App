@@ -6,7 +6,7 @@ import "./FrontForm.css";
 const FrontForm = () =>{
     return (
         <div className = "boxShade ">
-          <h1 >Here are some <span className = "Notice">New looks</span> for you!!</h1>
+          <h1 >Here are some <span className = "Notice">Ideas </span> for you!!</h1>
           <p></p>
         </div>
     )

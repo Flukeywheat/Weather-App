@@ -4,7 +4,8 @@ import './App.css';
 
 import linksToArr from  "./components/Helper/GroupLinks";
 import NavBar from "./components/NavBar/NavBar";
-import LoginForm from "./components/Authentication/LoginForm/LoginForm";
+import LoginForm from "./components/Authentication/LoginFrom";
+import SignUpForm from "./components/Authentication/SignUpForm";
 import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
 
 
@@ -79,16 +80,19 @@ class App extends Component {
           />
         <FrontPageHeader hidden = {this.state.hideIntroSec} />
         <LoginForm logVisible = {this.state.loginActive} />
+        <SignUpForm logVisible = {this.state.SignupActive} />
       </div>
     );
   }
 
 
 
-getClickStatus = (logOrSign) =>{
-  if ( logOrSign )
+getClickStatus = (event) =>{
+  console.log(event);
+  
+  if ( event.linkName === "login" )
   {
-      this.setState({
+    this.setState({
         loginActive: true,
         hideIntroSec: true
       })
