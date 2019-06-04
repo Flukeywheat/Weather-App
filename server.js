@@ -14,7 +14,6 @@ passport.use(new googleStrategy({
 }, async (token, tokenSecret, profile, done) =>{
     console.log(token);
     
-    await(profile)
 }));
 
 
