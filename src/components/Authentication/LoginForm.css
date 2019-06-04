@@ -158,12 +158,12 @@
   
   .slideUp{
     position: relative;
-    top: 500px;
+    top: 200px;
     animation: slide 2.5s forwards;
   }
 
   @keyframes slide{
-    0% { top: 500;}
+    0% { top: 200;}
     100% { top: 0;}
   }
 
