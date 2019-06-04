@@ -34,7 +34,7 @@ const NavBar = (props) =>{
        
         
          return (
-            <li onClick = {props.sendData} className = "nav-item"> <a className = "nav-link" >{linkName}</a></li>
+            <li onClick = { props.sendData.bind(null, linkName)} className = "nav-item"> <a className = "nav-link" >{linkName}</a></li>
          )
      });
 
@@ -46,7 +46,10 @@ const NavBar = (props) =>{
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         
             <a href="/" className = "navbar-brand">What Are You Wearing?!! {newday}</a>
-            <div className = "collapse navbar-collapse" >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#authentication" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div className = "collapse navbar-collapse" id = "authentication" >
                 <ul className = " navbar-nav " >
                     {listItems}
                 </ul>

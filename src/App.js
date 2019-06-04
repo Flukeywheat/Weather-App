@@ -42,9 +42,9 @@ class App extends Component {
         fName: "Zach", key: "1"
       },
       weatherColors: null,
-      loginActive: null,
-      SignupActive: null,
-      hideIntroSec: null
+      loginActive: false,
+      SignupActive: false,
+      hideIntroSec: false
     }
   }
 
@@ -87,13 +87,14 @@ class App extends Component {
 
 
 
-getClickStatus = (event) =>{
-  console.log(event);
+getClickStatus = (log_Sign) =>{
+  console.log(log_Sign);
   
-  if ( event.linkName === "login" )
+  if ( log_Sign === "Login" )
   {
     this.setState({
         loginActive: true,
+        SignupActive: false,
         hideIntroSec: true
       })
   }
@@ -101,6 +102,7 @@ getClickStatus = (event) =>{
   {
     this.setState({
       SignupActive: true,
+      loginActive: false,
       hideIntroSec: true
     })
   }
