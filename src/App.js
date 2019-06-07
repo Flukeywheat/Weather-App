@@ -38,9 +38,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      name: {
-        fName: "Zach", key: "1"
-      },
+      name: "Zach",
       weatherColors: null,
       loginActive: false,
       SignupActive: false,
@@ -79,8 +77,8 @@ class App extends Component {
           links = {tmpObject} 
           />
         <FrontPageHeader hidden = {this.state.hideIntroSec} />
-        <LoginForm logVisible = {this.state.loginActive} />
-        <SignUpForm logVisible = {this.state.SignupActive} />
+        <LoginForm tst = {this.state.name} contactServer = {this.sendData} logVisible = {this.state.loginActive} />
+        <SignUpForm  contactServer = {this.sendData}  logVisible = {this.state.SignupActive} />
       </div>
     );
   }
@@ -124,7 +122,23 @@ getWeatherData = (weatherData) =>{
 
 
 
+sendData = () =>{
+  
+  const data = {
+    method: "post",
+    body: ("This is a test")
+  }
 
+
+  fetch('http://localhost:5000').then(
+    response =>  response.text()
+    ).then( response => this.setState({name: response}))
+    }
+    
+    
+
+
+}
 
 
 
@@ -132,6 +146,6 @@ getWeatherData = (weatherData) =>{
 
 
   
-}
+
 
 export default App;

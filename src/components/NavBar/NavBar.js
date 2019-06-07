@@ -45,7 +45,7 @@ const NavBar = (props) =>{
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         
-            <a href="/" className = "navbar-brand">What Are You Wearing?!! {newday}</a>
+            <a href="/" className = "navbar-brand">Weather {newday}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#authentication" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
