@@ -6,9 +6,9 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
 const app = express();
+
+app.use(bodyParser.json({ extended: true }));
 app.use(cors());
-
-
 
 passport.use(new googleStrategy({
     clientID: keys.googleClientID,
@@ -20,12 +20,24 @@ passport.use(new googleStrategy({
 }));
 
 app.get("/", (req, res) =>{
-    res.send("This is just a test");
+
+    const tst = {
+        name: "Zaen",
+        messgage: "This is a test"
+    }
+    res.send("Thi sis a tst");
     
     // console.log(req);
     
 })
 
+
+app.post("/", (req, res) =>{
+    res.send("Message sent");
+    const newData = req.body;
+    console.log(newData);
+    
+})
 
 // app.get("/", passport.authenticate("google", {
 //     scope: ["profile", "email"]

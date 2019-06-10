@@ -126,12 +126,19 @@ sendData = () =>{
   
   const data = {
     method: "post",
-    body: ("This is a test")
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({message: "This is the client"})
   }
 
+  console.log(data.body);
+  
 
-  fetch('http://localhost:5000').then(
-    response =>  response.text()
+  fetch('http://localhost:5000', data).then(
+    (response) =>{
+      const tmp = response.text();
+      
+      return tmp;
+    }  
     ).then( response => this.setState({name: response}))
     }
     
