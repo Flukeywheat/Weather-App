@@ -29,7 +29,7 @@ class  AuthenticateForm extends Component {
 
     render(){ 
       let toggle = this.state.visibility;
-      const  form = this.props.formType;
+      const form = this.props.formType;
       let SignUpAdditive;
       let formFooter;
 
