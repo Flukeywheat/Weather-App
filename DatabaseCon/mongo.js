@@ -34,7 +34,16 @@ class connectAtlas{
         newUser.userName = props.email;
 
         newUser.save( (err) =>{
-            console.log(err);
+
+            if ( err )
+            {
+                console.log(err);
+            }
+            else
+            {
+                console.log("completed");
+                
+            }
             
         })
 

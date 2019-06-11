@@ -4,8 +4,7 @@ import './App.css';
 
 import linksToArr from  "./components/Helper/GroupLinks";
 import NavBar from "./components/NavBar/NavBar";
-import LoginForm from "./components/Authentication/LoginFrom";
-import SignUpForm from "./components/Authentication/SignUpForm";
+import AuthenticateForm from "./components/Authentication/AuthenticateForm";
 import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
 
 
@@ -77,8 +76,8 @@ class App extends Component {
           links = {tmpObject} 
           />
         <FrontPageHeader hidden = {this.state.hideIntroSec} />
-        <LoginForm tst = {this.state.name} contactServer = {this.sendData} logVisible = {this.state.loginActive} />
-        <SignUpForm  contactServer = {this.sendData}  logVisible = {this.state.SignupActive} />
+        <AuthenticateForm  logVisible = {this.state.loginActive} />
+        <AuthenticateForm formType = "signUp"  logVisible = {this.state.SignupActive} />
       </div>
     );
   }
