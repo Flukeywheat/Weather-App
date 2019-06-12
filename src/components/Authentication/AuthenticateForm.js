@@ -31,6 +31,7 @@ class  AuthenticateForm extends Component {
       let toggle = this.state.visibility;
       const form = this.props.formType;
       let SignUpAdditive;
+      let topInputMargin = 'fadeIn second';
       let formFooter;
 
 
@@ -43,6 +44,7 @@ class  AuthenticateForm extends Component {
       else
       {
         formFooter = this.returnFooter();
+        topInputMargin +=  " topInput";
       }
 
 
@@ -64,7 +66,7 @@ class  AuthenticateForm extends Component {
       return(
         <div id="formContent" className = {toggle} >
           {SignUpAdditive}
-          <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="Login" className="fadeIn second" name="login" placeholder= {this.state.user}/>
+          <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="Login" className={topInputMargin}name="login" placeholder= {this.state.user}/>
           <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
           <input onClick = {this.authenticate} type="submit" className="fadeIn fourth"/>
           {formFooter}
@@ -93,10 +95,6 @@ class  AuthenticateForm extends Component {
 
   updateForm = (event, props) =>{
 
-    console.log(props);
-    console.log(event);
-    
-
     switch (props) {
       case ("user"):
         this.setState({
@@ -117,7 +115,6 @@ class  AuthenticateForm extends Component {
         break;
     }
 
-    console.log(this.state);
     
 
 
@@ -129,7 +126,7 @@ class  AuthenticateForm extends Component {
 
 
   returnSignUp = () =>{
-    return   <input onChange = {this.updateForm("email")}  type="text" id="emailVer" className="fadeIn second" name="login" placeholder= {this.state.email}/>      
+    return   <input onChange = {(event) => this.updateForm(event, "email")}  type="text" id="emailVer" className="fadeIn second topInput" name="login" placeholder= {this.state.email}/>      
   }
   returnFooter = () =>{
     return <div id="formFooter">
@@ -141,8 +138,13 @@ class  AuthenticateForm extends Component {
 
 
   authenticate = () =>{
-  
-    
+    const newEmail = this.state.email;
+    let tmpEmail = null;
+
+    if ( newEmail !== "Enter Email")
+    {
+      tmpEmail = newEmail;
+    }
 
     
     const data = {
@@ -150,18 +152,13 @@ class  AuthenticateForm extends Component {
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({
         user: this.state.user,
-        pass: this.state.password
+        pass: this.state.password,
+        email: newEmail
       })
     }
   
-    const newEmail = this.state.email;
-
-    if ( newEmail !== "Enter Email")
-    {
-      data.body.email = newEmail;
-    }
-  
-
+    
+    
 
 
 
@@ -171,7 +168,7 @@ class  AuthenticateForm extends Component {
       (response) =>{
         const tmp = response.text();
         return tmp;
-      }).then( response => this.setState({user: response}))
+      }).then( response => console.log(response));
       }
       
       

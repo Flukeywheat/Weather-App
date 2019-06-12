@@ -41,7 +41,7 @@ app.get("/", (req, res) =>{
 
 
 app.post("/", (req, res) =>{
-    res.send("Message sent");
+    res.send("Message received");
     const newData = req.body;
     console.log(newData);
     

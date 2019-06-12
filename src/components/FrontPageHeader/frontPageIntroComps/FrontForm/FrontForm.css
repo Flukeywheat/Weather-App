@@ -1,4 +1,5 @@
 .boxShade{
+  background-image:  -webkit-linear-gradient(90deg, rgb(47, 163, 53) 50%, black 50%);
   margin: 10px 20% 30px;
   padding: 5px;
   padding-bottom: 100px;
