@@ -34,9 +34,6 @@ class  AuthenticateForm extends Component {
       let formFooter;
 
 
-      console.log(form);
-      
-
 
 
       if ( form === "signUp")
@@ -67,9 +64,9 @@ class  AuthenticateForm extends Component {
       return(
         <div id="formContent" className = {toggle} >
           {SignUpAdditive}
-          <input onChange = {this.updateForm}  type="email" id="Login" className="fadeIn second" name="login" placeholder= {this.state.user}/>
-          <input onChange = {this.updateForm} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
-          <input onClick = {this.updateForm} type="submit" className="fadeIn fourth"/>
+          <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="Login" className="fadeIn second" name="login" placeholder= {this.state.user}/>
+          <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
+          <input onClick = {this.authenticate} type="submit" className="fadeIn fourth"/>
           {formFooter}
     
       </div>
@@ -96,26 +93,32 @@ class  AuthenticateForm extends Component {
 
   updateForm = (event, props) =>{
 
+    console.log(props);
+    console.log(event);
+    
+
     switch (props) {
-      case "user":
+      case ("user"):
         this.setState({
           user: event.target.value
         })
         break;
-      case "password":
+      case ("password"):
         this.setState({
           password: event.target.value
         })
         break;
-      case "email":
+      case ("email"):
         this.setState({
-          user: event.target.value
+          email: event.target.value
         })
         break;
       default:
         break;
     }
 
+    console.log(this.state);
+    
 
 
     
@@ -126,7 +129,7 @@ class  AuthenticateForm extends Component {
 
 
   returnSignUp = () =>{
-    return   <input onChange = {this.updateForm}  type="text" id="emailVer" className="fadeIn second" name="login" placeholder= {this.state.email}/>      
+    return   <input onChange = {this.updateForm("email")}  type="text" id="emailVer" className="fadeIn second" name="login" placeholder= {this.state.email}/>      
   }
   returnFooter = () =>{
     return <div id="formFooter">
@@ -139,7 +142,7 @@ class  AuthenticateForm extends Component {
 
   authenticate = () =>{
   
-
+    
 
     
     const data = {
@@ -151,8 +154,19 @@ class  AuthenticateForm extends Component {
       })
     }
   
-    
+    const newEmail = this.state.email;
+
+    if ( newEmail !== "Enter Email")
+    {
+      data.body.email = newEmail;
+    }
   
+
+
+
+
+
+
     fetch('http://localhost:5000', data).then(
       (response) =>{
         const tmp = response.text();
