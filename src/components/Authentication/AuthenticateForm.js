@@ -69,6 +69,7 @@ class  AuthenticateForm extends Component {
           <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="Login" className={topInputMargin}name="login" placeholder= {this.state.user}/>
           <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
           <input onClick = {this.authenticate} type="submit" className="fadeIn fourth"/>
+          <button onClick = {this.findTst} >Test</button>
           {formFooter}
     
       </div>
@@ -80,6 +81,29 @@ class  AuthenticateForm extends Component {
 
 
 
+findTst = () =>{
+  const data = {
+    method: "post",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      test: "tst"
+    })
+  }
+
+
+  
+  
+
+
+
+
+
+  fetch('http://localhost:5000', data).then(
+    (response) =>{
+      const tmp = response.text();
+      return tmp;
+    }).then( response => console.log(response));
+    }
 
 
 

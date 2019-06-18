@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption");
 
 
 class connectAtlas{
@@ -13,18 +14,55 @@ class connectAtlas{
         const ObjId = Schema.ObjectId;
 
 
-        const User = new Schema({
+        const User = new mongoose.Schema({
             id: ObjId,
             userName: String,
             password: String,
             email: String
-        })
+        });
+
+        const sec = "esehteratonehtsdiorduoyeragnikoolrof";
+        User.plugin(encrypt, {secret: sec , excludeFromEncryption: ['userName']}); 
 
 
-        this.myModel = mongoose.model("User", User);
+        try //  checking for Model Overwrite
+        {
+            this.myModel = mongoose.model("User");
+        }
+        catch
+        {
+            this.myModel = mongoose.model("User", User);
+        }
+
+        
     }
 
-    accessUser(props){
+
+    findUser()
+    {
+        console.log("cUser");
+        
+        
+        this.myModel.findOne({userName : "thiashdpfgoiawe"} , function (err, foundUser){
+            if ( err )
+            {
+                console.log("err");
+                
+                console.log(err);
+            }
+            else
+            {
+                console.log("fnd");
+                
+                console.log(foundUser);
+                
+            }
+        });
+
+    }
+
+
+    saveUser(props){
 
         const newUser = new this.myModel();
         console.log(newUser);
@@ -46,6 +84,8 @@ class connectAtlas{
             }
             
         })
+        console.log(newUser);
+        
 
     }
 

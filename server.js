@@ -45,10 +45,19 @@ app.post("/", (req, res) =>{
     const newData = req.body;
     
     console.log(newData);
-    
-
     const auth = new mongo();
-    auth.accessUser(newData);
+
+
+    if ( newData.test === "tst")
+    {
+        auth.findUser();
+    }
+    else
+    {
+        
+        auth.saveUser(newData);
+    }
+    
     
     
 })

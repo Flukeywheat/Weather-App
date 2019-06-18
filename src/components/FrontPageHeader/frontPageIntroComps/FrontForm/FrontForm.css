@@ -15,7 +15,9 @@
 
 
 
-
+.whiteTxt{
+  color: white;
+}
 
 @keyframes scaledUp{
     from{ transform: scale(0)}
