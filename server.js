@@ -43,7 +43,12 @@ app.get("/", (req, res) =>{
 app.post("/", (req, res) =>{
     res.send("Message received");
     const newData = req.body;
+    
     console.log(newData);
+    
+
+    const auth = new mongo();
+    auth.accessUser(newData);
     
     
 })
@@ -58,13 +63,7 @@ app.post("/", (req, res) =>{
 app.listen( (process.env.PORT || 5000) , () =>{
     console.log("Server is listening");
     
-    tst = new mongo();
-    tmpObj = {
-        userName: "Zaen",
-        passWord: "asoidjngfaosijdnv",
-        email: "asdkjfn@yaho.com"
-    }
-    tst.accessUser(tmpObj);
+    
 
 
 })

@@ -28,7 +28,7 @@ class FrontPageHeader extends Component{
 
         return(
         <div className = {visible}>
-           <IntroSec weather = {this.state.weatherColors} />
+           <IntroSec hidden = {visible} weather = {this.state.weatherColors} />
            <FrontForm />
            <Weather sendData = {this.getWeatherData} />
             

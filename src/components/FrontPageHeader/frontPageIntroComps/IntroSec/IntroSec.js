@@ -9,15 +9,14 @@ const IntroSec= (props) =>{
     let clothRec;
     
 
-    const  display = (props.hidden) ? "hidden" : "show";
-    console.log(props.hidden);
+   
     
     
 
 
 
 
-    let BackColorClass = ["jumbotron", "fadeInBack", display ];
+    let BackColorClass = ["jumbotron", "fadeInBack" ];
 
     
     if ( tempKey != null )

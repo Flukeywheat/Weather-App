@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import axios from "axios";
+import "./Weather.css"
 
 
 
@@ -32,8 +33,8 @@ class Weather extends Component{
     render(){
         return(
             <div>
-                <p>{this.state.curTemp}</p>
-                <p>{this.state.forcast}</p>
+                <p id = "pInfo">Current Temperature <kbd>{this.state.curTemp}</kbd></p>
+                <p id = "pInfo"> {this.state.forcast}</p>
             </div>
         )
     }
@@ -70,7 +71,7 @@ class Weather extends Component{
                 const periodsOfDay =  res.data.properties.periods;
                 const dayNight = periodsOfDay[0].isDaytime; //Checking to see if daytime 
                 const perNums = ( dayNight ) ? 2 : 3;
-                const begTempString = "Current temperature: " + periodsOfDay[0].temperature + "°F";;
+                const begTempString = periodsOfDay[0].temperature + "°F";;
                 this.sendWeatherData(periodsOfDay[0].temperature);
 
 

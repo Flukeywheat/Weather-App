@@ -30,8 +30,8 @@ class connectAtlas{
         console.log(newUser);
         
         newUser.userName = props.user;
-        newUser.password = props.passWord;
-        newUser.userName = props.email;
+        newUser.password = props.pass;
+        newUser.email = props.email;
 
         newUser.save( (err) =>{
 

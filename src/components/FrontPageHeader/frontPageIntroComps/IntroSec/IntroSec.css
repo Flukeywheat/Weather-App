@@ -5,6 +5,8 @@
 }
 
 
+
+
 .warmSkyGrad{
     background-image: linear-gradient(rgb(199, 133, 95), rgb(230, 245, 143), white );
     
@@ -51,7 +53,7 @@ h1 {
 }
 p{
     margin: auto;
-    padding: 0 40px;
+    padding:40px;
     width: 50%;
 }
 
@@ -73,6 +75,7 @@ p{
     animation: scaleUp 4s forwards;  
 }
 .pFadeIn{
+    padding-bottom: 80px;
     transform: scale(0);
     animation: scaleUp 2.5s  2.5s forwards;
 }
