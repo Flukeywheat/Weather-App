@@ -7,7 +7,7 @@ class connectAtlas{
 
     constructor()
     {
-        const uri = 'mongodb+srv://admin_Zaen:Rebelt5i@cluster0-lnlwz.mongodb.net/Weather';
+        const uri = 'mongodb+srv://' + process.env.AtlLog +  "@cluster0-lnlwz.mongodb.net/Weather";
         mongoose.connect(uri, {useNewUrlParser: true} ).catch( err => console.log(err));
         
 
