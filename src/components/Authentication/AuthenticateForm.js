@@ -17,8 +17,11 @@ class  AuthenticateForm extends Component {
     this.state = {
       visibility: "hidden",
       user: "Username",
+      userValid: null,
       password: "Password",
-      email: "Enter Email"
+      passwordValid: null,
+      email: "Enter Email",
+      emailValid: null
     }
   }
 
@@ -65,13 +68,12 @@ class  AuthenticateForm extends Component {
 
       return(
         <div id="formContent" className = {toggle} >
-          {SignUpAdditive}
-          <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="Login" className={topInputMargin}name="login" placeholder= {this.state.user}/>
-          <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
-          <input onClick = {this.authenticate} type="submit" className="fadeIn fourth"/>
-          <button onClick = {this.findTst} >Test</button>
-          {formFooter}
-    
+            {SignUpAdditive}
+            <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="email" className={topInputMargin}name="login" placeholder= {this.state.user}/>
+            <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
+            <input onClick = {this.authenticate} type="submit" className="fadeIn fourth" value = "Enter" />
+            <button onClick = {this.findTst} >Test</button>
+            {formFooter}
       </div>
       );
   }
@@ -82,6 +84,9 @@ class  AuthenticateForm extends Component {
 
 
 findTst = () =>{
+
+
+  
   const data = {
     method: "post",
     headers: {"Content-Type":"application/json"},
@@ -122,18 +127,21 @@ findTst = () =>{
     switch (props) {
       case ("user"):
         this.setState({
-          user: event.target.value
-        })
+          user: event.target.value,
+          userValid: true
+        });
         break;
       case ("password"):
         this.setState({
-          password: event.target.value
-        })
+          password: event.target.value,
+          passwordValid: true
+        });
         break;
       case ("email"):
         this.setState({
-          email: event.target.value
-        })
+          email: event.target.value,
+          emailValid: true
+        });
         break;
       default:
         break;
@@ -162,43 +170,59 @@ findTst = () =>{
 
 
   authenticate = () =>{
-    const newEmail = this.state.email;
-    let tmpEmail = null;
+    const validate = [ this.state.passwordValid, this.state.userValid, this.state.emailValid];
+    let sendToServer = false;
 
-    if ( newEmail !== "Enter Email")
-    {
-      tmpEmail = newEmail;
-    }
-
-    
-    const data = {
-      method: "post",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({
-        user: this.state.user,
-        pass: this.state.password,
-        email: newEmail
-      })
-    }
-  
-    
-    
-
-
-
-
-
-    fetch('http://localhost:5000', data).then(
-      (response) =>{
-        const tmp = response.text();
-        return tmp;
-      }).then( response => console.log(response));
+    validate.forEach(element => {
+      if (element)
+      {
+        sendToServer = true;
       }
+      else
+      {
+        sendToServer = false;
+      }
+    });
+
+    console.log(sendToServer);
+    
+
+    if ( sendToServer )
+    {
+      const data = {
+        method: "post",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          user: this.state.user,
+          pass: this.state.password,
+          email: this.state.email
+        })
+      }
+    
       
       
   
   
-  }
+  
+  
+  
+      fetch('http://localhost:5000', data).then(
+        (response) =>{
+          const tmp = response.text();
+          return tmp;
+        }).then( response => console.log(response));
+    }
+    else
+    {
+      alert("Invalid Entry");
+    }
+        
+        
+    
+    
+    }
+    }
+    
 
 
 

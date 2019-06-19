@@ -32,7 +32,7 @@ class Weather extends Component{
 
     render(){
         return(
-            <div>
+            <div className = "WeatherInfo">
                 <p id = "pInfo">Current Temperature <kbd>{this.state.curTemp}</kbd></p>
                 <p id = "pInfo"> {this.state.forcast}</p>
             </div>

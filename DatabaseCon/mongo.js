@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const encrypt = require("mongoose-encryption");
 
@@ -21,8 +22,9 @@ class connectAtlas{
             email: String
         });
 
-        const sec = "esehteratonehtsdiorduoyeragnikoolrof";
-        User.plugin(encrypt, {secret: sec , excludeFromEncryption: ['userName']}); 
+        console.log(process.env.SEC);
+        
+        User.plugin(encrypt, {secret: process.env.SEC , excludeFromEncryption: ['userName']}); 
 
 
         try //  checking for Model Overwrite
@@ -43,7 +45,7 @@ class connectAtlas{
         console.log("cUser");
         
         
-        this.myModel.findOne({userName : "thiashdpfgoiawe"} , function (err, foundUser){
+        this.myModel.findOne({userName : "flukeywheat"} , function (err, foundUser){
             if ( err )
             {
                 console.log("err");
