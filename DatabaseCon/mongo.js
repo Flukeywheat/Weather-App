@@ -14,7 +14,7 @@ class connectAtlas{
         const Schema = mongoose.Schema;
         const ObjId = Schema.ObjectId;
 
-
+     
         const User = new mongoose.Schema({
             id: ObjId,
             userName: String,
@@ -40,63 +40,60 @@ class connectAtlas{
 
 
     findUser(name)
-    {
-        return new Promise( (resolve, reject) =>{
-            console.log(resolve);
-            console.log(reject);
+    {   
             
-            
-            this.myModel.findOne({userName : name} , function (err, foundUser){
+            return this.myModel.findOne({userName : name} , function (err, foundUser){
+                
                 if ( !err )
                 {
-                    tstTru = ( foundUser ) ? true : false;
+                    const truFal = ( foundUser !== null ) ? true : false;
+                    return truFal;
                 }
                 else
                 {
                     console.log(err);
+                    return null;
                 }
-                console.log(tstTru + "tru test");
-                return tstTru;
-            }).then( (tst) =>{
-                console.log(tst);
-                
             })
-            console.log(tstTru + " thistst ");
             
-            return tstTru;
-            }).then( () =>{
-                console.log("this is a test");
-                
-            })   
-        
     }
+    
 
 
     saveUser(props){
 
         const newUser = new this.myModel();
-        console.log(this.findUser(props.user) + " tst ");
         
-        const tst = this.findUser(props.user);
-        console.log(tst);
-        
-        
-            // newUser.userName = props.user;
-            // newUser.password = props.pass;
-            // newUser.email = props.email;
-
-            // newUser.save( (err) =>{
-
-            //     if ( err )
-            //     {
-            //         console.log(err);
-            //     }
-            //     else
-            //     {
-            //         console.log("completed");
-            //     }
+        this.findUser(props.user).then( (val) =>{
+            if ( val !== null)
+            {
+                console.log("User Name Already Taken");
                 
-            // })
+            }
+            else
+            {
+                newUser.userName = props.user;
+                newUser.password = props.pass;
+                newUser.email = props.email;
+
+                newUser.save( (err) =>{
+
+                    if ( err )
+                    {
+                        console.log(err);
+                    }
+                    else
+                    {
+                        console.log("completed");
+                    }
+                    
+                })
+                    
+            }
+            
+        })
+        
+            
         
         
         
