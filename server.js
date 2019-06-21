@@ -54,7 +54,7 @@ app.post("/", (req, res) =>{
     }
     else
     {
-        
+        console.log("TstSign");
         auth.saveUser(newData);
     }
     

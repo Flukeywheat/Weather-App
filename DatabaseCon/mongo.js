@@ -40,53 +40,67 @@ class connectAtlas{
     }
 
 
-    findUser()
+    findUser(name)
     {
-        console.log("cUser");
+        return new Promise( (resolve, reject) =>{
+            console.log(resolve);
+            console.log(reject);
+            
+            
+            this.myModel.findOne({userName : name} , function (err, foundUser){
+                if ( !err )
+                {
+                    tstTru = ( foundUser ) ? true : false;
+                }
+                else
+                {
+                    console.log(err);
+                }
+                console.log(tstTru + "tru test");
+                return tstTru;
+            }).then( (tst) =>{
+                console.log(tst);
+                
+            })
+            console.log(tstTru + " thistst ");
+            
+            return tstTru;
+            }).then( () =>{
+                console.log("this is a test");
+                
+            })   
         
-        
-        this.myModel.findOne({userName : "flukeywheat"} , function (err, foundUser){
-            if ( err )
-            {
-                console.log("err");
-                
-                console.log(err);
-            }
-            else
-            {
-                console.log("fnd");
-                
-                console.log(foundUser);
-                
-            }
-        });
-
     }
 
 
     saveUser(props){
 
         const newUser = new this.myModel();
-        console.log(newUser);
+        console.log(this.findUser(props.user) + " tst ");
         
-        newUser.userName = props.user;
-        newUser.password = props.pass;
-        newUser.email = props.email;
+        const tst = this.findUser(props.user);
+        console.log(tst);
+        
+        
+            // newUser.userName = props.user;
+            // newUser.password = props.pass;
+            // newUser.email = props.email;
 
-        newUser.save( (err) =>{
+            // newUser.save( (err) =>{
 
-            if ( err )
-            {
-                console.log(err);
-            }
-            else
-            {
-                console.log("completed");
+            //     if ( err )
+            //     {
+            //         console.log(err);
+            //     }
+            //     else
+            //     {
+            //         console.log("completed");
+            //     }
                 
-            }
-            
-        })
-        console.log(newUser);
+            // })
+        
+        
+        
         
 
     }
