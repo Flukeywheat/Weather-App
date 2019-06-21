@@ -22,7 +22,6 @@ class connectAtlas{
             email: String
         });
 
-        console.log(process.env.SEC);
         
         User.plugin(encrypt, {secret: process.env.SEC , excludeFromEncryption: ['userName']}); 
 
