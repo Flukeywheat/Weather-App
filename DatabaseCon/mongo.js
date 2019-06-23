@@ -23,7 +23,7 @@ class connectAtlas{
         });
 
         
-        User.plugin(encrypt, {secret: process.env.SEC , excludeFromEncryption: ['userName']}); 
+        User.plugin(encrypt, {secret: process.env.SEC , excludeFromEncryption: ['userName', "email"]}); 
 
 
         try //  checking for Model Overwrite
@@ -39,14 +39,41 @@ class connectAtlas{
     }
 
 
-    findUser(name)
+    async findUser(user) // find user based on Email of Username
     {   
+        const foundUser = await this.findUserByPar("userName" , user.name);
+        const foundEmail = await this.findUserByPar("email" , user.nEmail);
+           
+        console.log(foundUser + foundEmail + 'tst');
+        
+
+        if ( foundUser || foundEmail )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }   
+        
+
+
             
-            return this.myModel.findOne({userName : name} , function (err, foundUser){
+            
+    }
+    
+    findUserByPar(par, val) // looking in field par // finding by val
+    {
+        if (par === "userName")
+        {
+            return this.myModel.findOne({'userName' : val } , function (err, foundUser){
+                
                 
                 if ( !err )
                 {
                     const truFal = ( foundUser !== null ) ? true : false;
+                    console.log(truFal +  " true");
+                    
                     return truFal;
                 }
                 else
@@ -55,17 +82,41 @@ class connectAtlas{
                     return null;
                 }
             })
-            
+        }
+        else
+        {
+            return this.myModel.findOne({'email' : val } , function (err, foundUser){
+                
+                
+                if ( !err )
+                {
+                    const truFal = ( foundUser !== null ) ? true : false;
+                    console.log(truFal +  " true");
+                    
+                    return truFal;
+                }
+                else
+                {
+                    console.log(err);
+                    return null;
+                }
+            })
+        }
     }
-    
-
 
     saveUser(props){
 
         const newUser = new this.myModel();
-        
-        this.findUser(props.user).then( (val) =>{
-            if ( val !== null)
+        const nObjAuth = {
+            name : props.user,
+            nEmail : props.email
+        }
+       
+
+        this.findUser(nObjAuth).then( (val) =>{
+            console.log(val + "this is a test");
+            
+            if ( val === true)
             {
                 console.log("User Name Already Taken");
                 
