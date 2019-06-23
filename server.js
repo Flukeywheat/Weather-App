@@ -40,25 +40,25 @@ app.get("/", (req, res) =>{
 })
 
 
-app.post("/", (req, res) =>{
-    res.send("Message received");
+app.post("/", async (req, res) =>{
     const newData = req.body;
+    await Save(newData).then( (val) =>{
+        res.send(val);
+    });
     
+    
+});
+
+
+async function Save(data)
+{
     const auth = new mongo();
+    const tmpTSt = await auth.saveUser(data);
+    return tmpTSt;
+}
 
 
-    if ( newData.test === "tst")
-    {
-        auth.findUser();
-    }
-    else
-    {
-        auth.saveUser(newData);
-    }
-    
-    
-    
-})
+
 
 // app.get("/", passport.authenticate("google", {
 //     scope: ["profile", "email"]

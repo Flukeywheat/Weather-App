@@ -39,25 +39,29 @@ class connectAtlas{
     }
 
 
-    async findUser(user) // find user based on Email of Username
+    async findUser(user) // find user based on Email or Username
     {   
         const foundUser = await this.findUserByPar("userName" , user.name);
         const foundEmail = await this.findUserByPar("email" , user.nEmail);
            
-       
-
-        if ( foundUser || foundEmail )
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }   
         
 
+        let tmpObj = {
+            found: false
+        };
 
-            
+        if ( foundUser )
+        {
+            tmpObj.user = true;
+            tmpObj.found = true;
+        } 
+        if ( foundEmail )
+        {
+            tmpObj.email = true;
+            tmpObj.found = true;
+        }
+
+        return tmpObj
             
     }
     
@@ -71,7 +75,6 @@ class connectAtlas{
                 if ( !err )
                 {
                     const truFal = ( foundUser !== null ) ? true : false;
-                    console.log(truFal +  " true");
                     
                     return truFal;
                 }
@@ -85,13 +88,9 @@ class connectAtlas{
         else
         {
             return this.myModel.findOne({'email' : val } , function (err, foundUser){
-                
-                
                 if ( !err )
                 {
                     const truFal = ( foundUser !== null ) ? true : false;
-                    console.log(truFal +  " true");
-                    
                     return truFal;
                 }
                 else
@@ -103,7 +102,11 @@ class connectAtlas{
         }
     }
 
-    saveUser(props){
+
+
+
+
+    async saveUser(props){
 
         const newUser = new this.myModel();
         const nObjAuth = {
@@ -112,13 +115,22 @@ class connectAtlas{
         }
        
 
-        this.findUser(nObjAuth).then( (val) =>{
-            console.log(val + "this is a test");
+        const confirm = await this.findUser(nObjAuth).then( (val) =>{
             
-            if ( val === true)
+            if ( val.found === true)
             {
-                console.log("User Name Already Taken");
-                
+                let userMessage = "";
+                if ( val.user)
+                {
+                    userMessage += "Username "
+                }
+                if (val.email)
+                {
+                    userMessage += "Email "
+                }
+
+                userMessage += "Already Taken please enter another";
+                return userMessage
             }
             else
             {
@@ -138,15 +150,16 @@ class connectAtlas{
                     }
                     
                 })
-                    
+                return "Saved New User";
             }
             
         })
         
             
+        console.log(confirm + " New test");
         
         
-        
+        return confirm;
         
 
     }
