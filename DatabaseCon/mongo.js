@@ -44,8 +44,7 @@ class connectAtlas{
         const foundUser = await this.findUserByPar("userName" , user.name);
         const foundEmail = await this.findUserByPar("email" , user.nEmail);
            
-        console.log(foundUser + foundEmail + 'tst');
-        
+       
 
         if ( foundUser || foundEmail )
         {
