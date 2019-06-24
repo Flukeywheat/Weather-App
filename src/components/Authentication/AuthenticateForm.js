@@ -18,10 +18,12 @@ class  AuthenticateForm extends Component {
       visibility: "hidden",
       user: "Username",
       userValid: null,
+      userTaken: null,
       password: "Password",
       passwordValid: null,
       email: "Enter Email",
-      emailValid: null
+      emailValid: null,
+      emailTaken: null
     }
   }
 
@@ -36,6 +38,8 @@ class  AuthenticateForm extends Component {
       let SignUpAdditive;
       let topInputMargin = 'fadeIn second';
       let formFooter;
+      let userTaken;
+      let emailTaken;
 
 
 
@@ -69,9 +73,11 @@ class  AuthenticateForm extends Component {
       return(
         <div id="formContent" className = {toggle} >
             {SignUpAdditive}
+            {/* {emailTaken} */}
             <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="email" className={topInputMargin}name="login" placeholder= {this.state.user}/>
+            {/* {userNameTaken} */}
             <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
-            <input onClick = {this.authenticate} type="submit" className="fadeIn fourth" value = "Enter" />
+            <input onClick = {this.CreatUser} type="submit" className="fadeIn fourth" value = "Enter" />
             <button onClick = {this.findTst} >Test</button>
             {formFooter}
       </div>
@@ -169,7 +175,7 @@ findTst = () =>{
 
 
 
-  authenticate = () =>{
+  CreatUser = () =>{
     const validate = [ this.state.passwordValid, this.state.userValid, this.state.emailValid];
     let sendToServer = false;
 
@@ -198,19 +204,48 @@ findTst = () =>{
           email: this.state.email
         })
       }
-    
-      
-      
-  
-  
-  
-  
-  
+
       fetch('http://localhost:5000', data).then(
         (response) =>{
           const tmp = response.text();
           return tmp;
-        }).then( response => console.log(response));
+        }).then( (response) => {
+          if ( response )
+          {
+            console.log(response);
+            console.log(response["userFound"]);
+            
+            
+            if ( response.userFound === true && response.emailFound === true)
+            {
+              console.log("1");
+              
+              this.setState({
+                userTaken : true,
+                emailTaken : true 
+              });
+            }
+            else if ( response.emailFound )
+            {
+              console.log("2");
+
+              this.setState({
+                emailTaken: true
+              })
+            }
+            else
+            {
+              console.log("3");
+
+              this.setState({
+                userTaken: true
+              })
+            }
+            }
+          
+          console.log(this.state);
+          
+        });
     }
     else
     {

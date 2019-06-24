@@ -119,18 +119,16 @@ class connectAtlas{
             
             if ( val.found === true)
             {
-                let userMessage = "";
+                let retEmail_User = {};
                 if ( val.user)
                 {
-                    userMessage += "Username "
+                    retEmail_User.userFound = true;
                 }
                 if (val.email)
                 {
-                    userMessage += "Email "
+                    retEmail_User.emailFound = true;
                 }
-
-                userMessage += "Already Taken please enter another";
-                return userMessage
+                return retEmail_User;
             }
             else
             {
@@ -156,7 +154,6 @@ class connectAtlas{
         })
         
             
-        console.log(confirm + " New test");
         
         
         return confirm;
