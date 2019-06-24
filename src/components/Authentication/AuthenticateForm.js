@@ -36,7 +36,7 @@ class  AuthenticateForm extends Component {
       let toggle = this.state.visibility;
       const form = this.props.formType;
       let SignUpAdditive;
-      let topInputMargin = 'fadeIn second';
+      let userNameInputStyling = 'whiteBox fadeIn second';
       let formFooter;
       let userTaken;
       let emailTaken;
@@ -46,12 +46,17 @@ class  AuthenticateForm extends Component {
 
       if ( form === "signUp")
       {
-        SignUpAdditive = this.returnSignUp();
+        let redBox;
+        if ( this.state.emailTaken )
+        {
+          redBox = true;
+        }
+        SignUpAdditive = this.returnSignUp(redBox);
       }
       else
       {
         formFooter = this.returnFooter();
-        topInputMargin +=  " topInput";
+        userNameInputStyling +=  " topInput";
       }
 
 
@@ -74,6 +79,7 @@ class  AuthenticateForm extends Component {
     if ( this.state.userTaken)
     {
       userTaken = this.returnEmail_UserTakenP("Username");
+      userNameInputStyling += " redBox";
     }
 
 
@@ -84,11 +90,10 @@ class  AuthenticateForm extends Component {
         <div id="formContent" className = {toggle} >
             {SignUpAdditive}
             {emailTaken}
-            <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="email" className={topInputMargin}name="login" placeholder= {this.state.user}/>
+            <input onChange = {(event) => this.updateForm(event, "user")}  type="text" id="email" className={userNameInputStyling}name="login" placeholder= {this.state.user}/>
             {userTaken}
-            <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
+            <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="whiteBox fadeIn third" name="login" placeholder={this.state.password}/>
             <input onClick = {this.CreatUser} type="submit" className="fadeIn fourth" value = "Enter" />
-            <button onClick = {this.findTst} >Test</button>
             {formFooter}
       </div>
       );
@@ -173,8 +178,14 @@ findTst = () =>{
 
 
 
-  returnSignUp = () =>{
-    return   <input onChange = {(event) => this.updateForm(event, "email")}  type="text" id="emailVer" className="fadeIn second topInput" name="login" placeholder= {this.state.email}/>      
+  returnSignUp = (Border) =>{
+    let styling ="whiteBox fadeIn second topInput";
+    if ( Border )
+    {
+      styling += " redBox"
+    }
+
+    return   <input onChange = {(event) => this.updateForm(event, "email")}  type="text" id="emailVer" className={styling} name="login" placeholder= {this.state.email}/>      
   }
   returnFooter = () =>{
     return <div id="formFooter">
