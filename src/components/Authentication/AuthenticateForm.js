@@ -67,11 +67,11 @@ class  AuthenticateForm extends Component {
 
 
 
-    if ( this.state.userTaken)
+    if ( this.state.emailTaken)
     {
       emailTaken = this.returnEmail_UserTakenP("Email Address");
     }
-    if ( this.state.emailTaken)
+    if ( this.state.userTaken)
     {
       userTaken = this.returnEmail_UserTakenP("Username");
     }
@@ -190,6 +190,14 @@ findTst = () =>{
   CreatUser = () =>{
     const validate = [ this.state.passwordValid, this.state.userValid, this.state.emailValid];
     let sendToServer = false;
+    this.setState({
+      emailTaken : false,
+      userTaken: false
+    })
+
+
+
+
 
     validate.forEach(element => {
       if (element)
@@ -201,10 +209,6 @@ findTst = () =>{
         sendToServer = false;
       }
     });
-
-    console.log(sendToServer);
-    
-
     if ( sendToServer )
     {
       const data = {
