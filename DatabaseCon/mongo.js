@@ -119,7 +119,10 @@ class connectAtlas{
             
             if ( val.found === true)
             {
-                let retEmail_User = {};
+                let retEmail_User = {
+                    userFound : null,
+                    emailFound : null
+                };
                 if ( val.user)
                 {
                     retEmail_User.userFound = true;
@@ -128,6 +131,8 @@ class connectAtlas{
                 {
                     retEmail_User.emailFound = true;
                 }
+                console.log(retEmail_User);
+                
                 return retEmail_User;
             }
             else

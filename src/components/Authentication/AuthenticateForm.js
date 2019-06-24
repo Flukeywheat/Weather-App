@@ -67,15 +67,25 @@ class  AuthenticateForm extends Component {
 
 
 
+    if ( this.state.userTaken)
+    {
+      emailTaken = this.returnEmail_UserTakenP("Email Address");
+    }
+    if ( this.state.emailTaken)
+    {
+      userTaken = this.returnEmail_UserTakenP("Username");
+    }
+
+
 
 
 
       return(
         <div id="formContent" className = {toggle} >
             {SignUpAdditive}
-            {/* {emailTaken} */}
+            {emailTaken}
             <input onChange = {(event) => this.updateForm(event, "user")}  type="email" id="email" className={topInputMargin}name="login" placeholder= {this.state.user}/>
-            {/* {userNameTaken} */}
+            {userTaken}
             <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="fadeIn third" name="login" placeholder={this.state.password}/>
             <input onClick = {this.CreatUser} type="submit" className="fadeIn fourth" value = "Enter" />
             <button onClick = {this.findTst} >Test</button>
@@ -171,7 +181,9 @@ findTst = () =>{
               <a className="underlineHover" href="#">Forgot Password?</a>
             </div>
   }
-
+  returnEmail_UserTakenP = (email_user) =>{
+    return <p className = "takenLbl"> {email_user} Already Taken</p>
+  }
 
 
 
@@ -205,18 +217,15 @@ findTst = () =>{
         })
       }
 
-      fetch('http://localhost:5000', data).then(
-        (response) =>{
-          const tmp = response.text();
-          return tmp;
-        }).then( (response) => {
+      fetch('http://localhost:5000', data).then( (response) => 
+    {
           if ( response )
           {
-            console.log(response);
-            console.log(response["userFound"]);
-            
-            
-            if ( response.userFound === true && response.emailFound === true)
+            return response.json();
+          }
+        }).then( (val)  =>{
+          
+            if ( val.userFound === true && val.emailFound === true)
             {
               console.log("1");
               
@@ -225,7 +234,7 @@ findTst = () =>{
                 emailTaken : true 
               });
             }
-            else if ( response.emailFound )
+            else if ( val.emailFound )
             {
               console.log("2");
 
@@ -241,7 +250,7 @@ findTst = () =>{
                 userTaken: true
               })
             }
-            }
+            
           
           console.log(this.state);
           

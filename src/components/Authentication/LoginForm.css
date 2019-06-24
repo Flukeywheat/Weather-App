@@ -10,8 +10,14 @@
   display: inline-block;
 }
 
+
+.takenLbl{
+  padding: 5px;
+  font-size: 0.7rem;
+  text-decoration: underline;
+}
  
-  body {
+ body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
   }
