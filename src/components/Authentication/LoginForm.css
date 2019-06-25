@@ -17,8 +17,23 @@
   color: red;
 }
 
-
+.inputLbl{
+  font-size: 0.85rem;
+  font-weight: bold;
+  position: absolute;
+  margin-top: 8px;
+  left: 25%;
+  width: 50%;
+  z-index: 1;
+  
+  
+}
  
+.inputStyle{
+  width: 400px;
+  margin: auto;
+}
+
  body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
@@ -53,13 +68,11 @@
     background: #fff;
     padding: 30px;
     max-width: 450px;
-    margin: auto;
+    margin: 40px;
     margin-top: 40px;
-    padding: 0px;
-    padding-top: 20px;
+    padding: 20px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    text-align: center;
   }
   
   #formFooter {

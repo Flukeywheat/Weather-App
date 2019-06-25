@@ -17,12 +17,12 @@ class  AuthenticateForm extends Component {
 
     this.state = {
       visibility: "hidden",
-      user: "Username",
+      user: null,
       userValid: null,
       userTaken: null,
-      password: "Password",
+      password: null,
       passwordValid: null,
-      email: "Enter Email",
+      email: null,
       emailValid: null,
       emailTaken: null
     }
@@ -93,9 +93,15 @@ class  AuthenticateForm extends Component {
         <div id="formContent" className = {toggle} >
             {SignUpAdditive}
             {emailTaken}
-            <input onChange = {(event) => this.updateForm(event, "user")}  type="text" id="email" className={userNameInputStyling}name="login" placeholder= {this.state.user}/>
-            {userTaken}
+            <div  className = "inputStyle">
+              <label className = "inputLbl fadeIn second" htmlFor="userName"> Username</label>
+              <input onChange = {(event) => this.updateForm(event, "user")}  type="text" id="userName" className={userNameInputStyling}name="login" placeholder= {this.state.user}/>
+            </div>
+           {userTaken}
+           <div className = "inputStyle">
+            <label className = "inputLbl fadeIn second" htmlFor="userName"> Password</label>
             <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="whiteBox fadeIn third" name="login" placeholder={this.state.password}/>
+           </div>
             <input onClick = {submitFunc} type="submit" className="fadeIn fourth" value = "Enter" />
             {formFooter}
       </div>
@@ -163,8 +169,15 @@ class  AuthenticateForm extends Component {
       styling += " redBox"
     }
 
-    return   <input onChange = {(event) => this.updateForm(event, "email")}  type="text" id="emailVer" className={styling} name="login" placeholder= {this.state.email}/>      
+    return  (
+      <div  className = "inputStyle">
+        <label className = "inputLbl fadeIn second" htmlFor="emailVer">Email</label>
+       <input onChange = {(event) => this.updateForm(event, "email")}  type="text" id="emailVer" className={styling} name="login" placeholder= {this.state.email}/>      
+      </div>
+    )
   }
+
+
   returnFooter = () =>{
     return <div id="formFooter">
               <a className="underlineHover" href="#">Forgot Password?</a>
