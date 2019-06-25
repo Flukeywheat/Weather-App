@@ -3,6 +3,7 @@ import axios from "axios";
  
 import "./LoginForm.css";
 import "../FrontPageHeader/frontPageIntroComps/FrontForm/FrontForm.css";
+import { create } from "istanbul-reports";
 
 
 
@@ -40,6 +41,7 @@ class  AuthenticateForm extends Component {
       let formFooter;
       let userTaken;
       let emailTaken;
+      let submitFunc = this.checkUser; //Login Form Submit
 
 
 
@@ -52,6 +54,7 @@ class  AuthenticateForm extends Component {
           redBox = true;
         }
         SignUpAdditive = this.returnSignUp(redBox);
+        submitFunc = this.CreatUser; // Sign Up Form Commit
       }
       else
       {
@@ -93,7 +96,7 @@ class  AuthenticateForm extends Component {
             <input onChange = {(event) => this.updateForm(event, "user")}  type="text" id="email" className={userNameInputStyling}name="login" placeholder= {this.state.user}/>
             {userTaken}
             <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="whiteBox fadeIn third" name="login" placeholder={this.state.password}/>
-            <input onClick = {this.CreatUser} type="submit" className="fadeIn fourth" value = "Enter" />
+            <input onClick = {submitFunc} type="submit" className="fadeIn fourth" value = "Enter" />
             {formFooter}
       </div>
       );
@@ -104,32 +107,7 @@ class  AuthenticateForm extends Component {
 
 
 
-findTst = () =>{
-
-
   
-  const data = {
-    method: "post",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      test: "tst"
-    })
-  }
-
-
-  
-  
-
-
-
-
-
-  fetch('http://localhost:5000', data).then(
-    (response) =>{
-      const tmp = response.text();
-      return tmp;
-    }).then( response => console.log(response));
-    }
 
 
 
@@ -198,18 +176,20 @@ findTst = () =>{
 
 
 
-  CreatUser = () =>{
-    const validate = [ this.state.passwordValid, this.state.userValid, this.state.emailValid];
+
+  validateCurrentInputs = (signUp) =>{
+    const validate = [ this.state.passwordValid, this.state.userValid];
+
+    if (signUp)//check if Sign up Form 
+    {
+      validate.push(this.state.emailValid)
+    }
+
     let sendToServer = false;
     this.setState({
       emailTaken : false,
       userTaken: false
     })
-
-
-
-
-
     validate.forEach(element => {
       if (element)
       {
@@ -220,20 +200,58 @@ findTst = () =>{
         sendToServer = false;
       }
     });
-    if ( sendToServer )
-    {
-      const data = {
-        method: "post",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-          user: this.state.user,
-          pass: this.state.password,
-          email: this.state.email
-        })
-      }
+    return sendToServer
+  }
 
-      fetch('http://localhost:5000', data).then( (response) => 
+
+  formatStateForServer = () =>{
+    //Create object from current State
+    let stateProps = {
+      user: this.state.user,
+      pass: this.state.password
+    };
+    if ( this.state.email !== null)
     {
+      stateProps.email = this.state.email;
+    }
+    stateProps = JSON.stringify(stateProps);
+    
+
+
+
+    const data = {
+      method: "post",
+      headers: {"Content-Type":"application/json"},
+      body: stateProps
+    };
+      
+    // Format for Server
+    
+
+  console.log(data);
+  
+  return data;
+}
+
+
+
+
+
+
+  checkUser = () =>{
+    if ( this.validateCurrentInputs(false) )
+    {
+      const data = this.formatStateForServer();
+    }
+  }
+
+
+  CreatUser = () =>{
+    
+    if ( this.validateCurrentInputs(true) )
+    {
+      const data = this.formatStateForServer(); 
+      fetch('http://localhost:5000', data).then( (response) => {
           if ( response )
           {
             return response.json();
@@ -275,9 +293,6 @@ findTst = () =>{
     {
       alert("Invalid Entry");
     }
-        
-        
-    
     
     }
     }
