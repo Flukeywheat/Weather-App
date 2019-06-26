@@ -45,6 +45,11 @@ class connectAtlas{
         const foundEmail = await this.findUserByPar("email" , user.nEmail);
            
         
+        
+
+        
+        
+        
 
         let tmpObj = {
             found: false
@@ -60,7 +65,8 @@ class connectAtlas{
             tmpObj.email = true;
             tmpObj.found = true;
         }
-
+        console.log(tmpObj);
+        
         return tmpObj
             
     }
@@ -69,41 +75,50 @@ class connectAtlas{
     {
         if (par === "userName")
         {
-            return this.myModel.findOne({'userName' : val } , function (err, foundUser){
+            return this.myModel.countDocuments({'userName' : val } , function (err, count){
                 
-                
-                if ( !err )
-                {
-                    const truFal = ( foundUser !== null ) ? true : false;
-                    
-                    return truFal;
-                }
-                else
+                if ( err )
                 {
                     console.log(err);
-                    return null;
                 }
             })
         }
         else
         {
-            return this.myModel.findOne({'email' : val } , function (err, foundUser){
-                if ( !err )
+            return this.myModel.countDocuments({'email' : val } , function (err, count){
+                if ( err )
                 {
-                    const truFal = ( foundUser !== null ) ? true : false;
-                    return truFal;
-                }
-                else
-                {
-                    console.log(err);
-                    return null;
+                   console.log(err); 
                 }
             })
         }
     }
 
 
+    async authUser(userInfo)
+    {
+        const user = await this.myModel.findOne({'userName' : userInfo.user } , function (err, foundUser){
+            if ( !err && foundUser)
+            {
+                return foundUser;
+            }
+            else if ( err )
+            {
+                console.log(err);
+                console.log("108");
+                
+            }
+        })
 
+        if ( user != null && userInfo.pass === user.password)
+        {   
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
     async saveUser(props){

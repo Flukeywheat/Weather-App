@@ -241,8 +241,6 @@ class  AuthenticateForm extends Component {
     // Format for Server
     
 
-  console.log(data);
-  
   return data;
 }
 
@@ -255,6 +253,7 @@ class  AuthenticateForm extends Component {
     if ( this.validateCurrentInputs(false) )
     {
       const data = this.formatStateForServer();
+      fetch('http://localhost:5000', data)
     }
   }
 
