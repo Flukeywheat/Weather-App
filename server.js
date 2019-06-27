@@ -42,12 +42,31 @@ app.get("/", (req, res) =>{
 
 app.post("/", async (req, res) =>{
     const newData = req.body;
-    await Save(newData).then( (val) =>{
-        res.send(val);
+    
+    
+    
+     authLogin(newData).then( (val) =>{
+        console.log(val);
+        console.log("51");
+        
     });
+
+
+    // await Save(newData).then( (val) =>{
+    //     res.send(val);
+    // });
     
     
 });
+
+async function authLogin(data)
+{
+    const auth = new mongo();
+    const tmpTSt = await auth.authUser(data);
+    
+    
+    return tmpTSt;
+}
 
 
 async function Save(data)

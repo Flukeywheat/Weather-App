@@ -33,6 +33,15 @@
   margin: auto;
 }
 
+
+
+#password{
+  -webkit-text-security: disc;
+}
+
+
+
+
  body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
