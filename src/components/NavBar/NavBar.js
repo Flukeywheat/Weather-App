@@ -32,13 +32,13 @@ const NavBar = (props) =>{
 
     let listItems =  props.links.map( (item) =>{
         const linkName =  item.newTitle;
-       
+        const path = "/" + linkName;
+        
         console.log(linkName);
         
          return (
              <div>
-                <li onClick = { props.sendData.bind(null, linkName)} className = "navBarClr nav-item"> <a className = "nav-link" >{linkName}</a></li>
-                {/* <NavLink to = "/" /> */}
+                <li  className = "navBarClr nav-item"> <NavLink to = {path} className = "nav-link" >{linkName}</NavLink></li>
              </div>
             )
      });
@@ -50,7 +50,7 @@ const NavBar = (props) =>{
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         
-            <a href="/" className = "navBarClr navbar-brand">Weather {newday}</a>
+            <NavLink to ="/" className = "navBarClr navbar-brand">Weather {newday}</NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#authentication" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

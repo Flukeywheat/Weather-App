@@ -72,15 +72,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path = "/"> 
-            <NavBar 
-              signUpVis = {this.state.SignupActive} 
-              sendData = {this.getClickStatus}
-              links = {tmpObject} 
-              />
-          </Route>
-          <Route path = "/login" id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"/>}/>
-          <Route path = "/sign-up" id = "loginPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
+          <NavBar links = {tmpObject} />
+          <Route path  = "/" exact component =  {FrontPageHeader}/>
+          <Route path = "/login" exact id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"/>}/>
+          <Route path = "/sign up" exact  id = "loginPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
 
         </div>
       </BrowserRouter>
@@ -95,26 +90,7 @@ class App extends Component {
 
 
 
-getClickStatus = (log_Sign) =>{
-  console.log(log_Sign);
-  
-  if ( log_Sign === "Login" )
-  {
-    this.setState({
-        loginActive: true,
-        SignupActive: false,
-        hideIntroSec: true
-      })
-  }
-  else
-  {
-    this.setState({
-      SignupActive: true,
-      loginActive: false,
-      hideIntroSec: true
-    })
-  }
-}
+
 
 
 
