@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import axios from "axios";
+import { Redirect } from "react-router-dom";
  
 import "./LoginForm.css";
 import "../FrontPageHeader/frontPageIntroComps/FrontForm/FrontForm.css";
-import { create } from "istanbul-reports";
 
 
 
@@ -23,7 +22,8 @@ class  AuthenticateForm extends Component {
       passwordValid: null,
       email: null,
       emailValid: null,
-      emailTaken: null
+      emailTaken: null,
+      redirect: false
     }
   }
 
@@ -41,6 +41,34 @@ class  AuthenticateForm extends Component {
       let userTaken;
       let emailTaken;
       let submitFunc = this.checkUser; //Login Form Submit
+
+
+      if ( this.state.redirect)
+      {
+        return (
+            <Redirect to = "/" />
+        );
+      }
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,6 +109,30 @@ class  AuthenticateForm extends Component {
     }
 
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,7 +168,7 @@ class  AuthenticateForm extends Component {
 
 
 
-
+  
 
 
 
@@ -248,8 +300,15 @@ class  AuthenticateForm extends Component {
     if ( this.validateCurrentInputs(false) )
     {
       const data = this.formatStateForServer();
-      fetch('http://localhost:5000', data)
+      fetch('http://localhost:5000/login', data).then( (response) =>{
+        console.log(response);
+        
+      } )
+      
+      
+
     }
+    // this.toHome
   }
 
 
@@ -258,7 +317,7 @@ class  AuthenticateForm extends Component {
     if ( this.validateCurrentInputs(true) )
     {
       const data = this.formatStateForServer(); 
-      fetch('http://localhost:5000', data).then( (response) => {
+      fetch('http://localhost:5000/signUp', data).then( (response) => {
           if ( response )
           {
             return response.json();
@@ -295,17 +354,30 @@ class  AuthenticateForm extends Component {
           console.log(this.state);
           
         });
+        this.toHome();
     }
     else
     {
       alert("Invalid Entry");
     }
-    
+
     }
-    }
-    
 
 
+    toHome = () =>{
+      this.setState({
+        redirect: true
+      });
+    }
+
+
+
+
+
+  }
+    
+
+  
 
 
 

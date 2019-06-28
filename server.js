@@ -40,24 +40,36 @@ app.get("/", (req, res) =>{
 })
 
 
-app.post("/", async (req, res) =>{
+app.post("/login", async (req, res) =>{
     const newData = req.body;
     
     
     
      authLogin(newData).then( (val) =>{
-        console.log(val);
-        console.log("51");
+        res.send(val)
         
     });
 
-
-    // await Save(newData).then( (val) =>{
-    //     res.send(val);
-    // });
+    
     
     
 });
+
+
+
+app.post("/signUp", async (req, res ) =>{
+    const newData = req.body;
+    
+    console.log("signUP");
+    
+
+    await Save(newData).then( (val) =>{
+        console.log(val);
+        
+        res.send(val);
+    });
+    
+})
 
 async function authLogin(data)
 {
