@@ -324,37 +324,33 @@ class  AuthenticateForm extends Component {
           }
         }).then( (val)  =>{
           
-            if ( val.userFound === true && val.emailFound === true)
-            {
-              console.log("1");
-              
-              this.setState({
-                userTaken : true,
-                emailTaken : true 
-              });
-            }
-            else if ( val.emailFound )
-            {
-              console.log("2");
+            let savedUser = true;
 
+            if ( val.emailFound )
+            {
+              savedUser = false;
               this.setState({
                 emailTaken: true
               })
             }
-            else
+             if ( val.userFound )
             {
-              console.log("3");
-
+              savedUser = false;
               this.setState({
                 userTaken: true
               })
             }
+            if ( savedUser === true)
+            {
+              alert("Completed Sign Up");
+            }
             
           
-          console.log(this.state);
+          console.log(val);
+          
           
         });
-        this.toHome();
+        // this.toHome();
     }
     else
     {

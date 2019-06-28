@@ -132,12 +132,16 @@ class connectAtlas{
 
         const confirm = await this.findUser(nObjAuth).then( (val) =>{
             
+            let retEmail_User = {
+                userFound : null,
+                emailFound : null
+            };
+
+
+
             if ( val.found === true)
             {
-                let retEmail_User = {
-                    userFound : null,
-                    emailFound : null
-                };
+                
                 if ( val.user)
                 {
                     retEmail_User.userFound = true;
@@ -168,8 +172,8 @@ class connectAtlas{
                     }
                     
                 })
-                return "Saved New User";
             }
+            return retEmail_User;
             
         })
         
