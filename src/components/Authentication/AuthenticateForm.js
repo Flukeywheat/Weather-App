@@ -16,7 +16,6 @@ class  AuthenticateForm extends Component {
     
 
     this.state = {
-      visibility: "hidden",
       user: null,
       userValid: null,
       userTaken: null,
@@ -34,7 +33,7 @@ class  AuthenticateForm extends Component {
     
 
     render(){ 
-      let toggle = this.state.visibility;
+      let toggle = "slideUp";
       const form = this.props.formType;
       let SignUpAdditive;
       let userNameInputStyling = 'whiteBox fadeIn second';
@@ -67,10 +66,6 @@ class  AuthenticateForm extends Component {
       
 
 
-    if ( this.props.logVisible )
-    {
-      toggle = "visible slideUp";
-    }
 
 
 

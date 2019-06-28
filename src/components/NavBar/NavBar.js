@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import styles from "./NavBar.css";
 
 
@@ -35,8 +36,11 @@ const NavBar = (props) =>{
         console.log(linkName);
         
          return (
-            <li onClick = { props.sendData.bind(null, linkName)} className = "navBarClr nav-item"> <a className = "nav-link" >{linkName}</a></li>
-         )
+             <div>
+                <li onClick = { props.sendData.bind(null, linkName)} className = "navBarClr nav-item"> <a className = "nav-link" >{linkName}</a></li>
+                {/* <NavLink to = "/" /> */}
+             </div>
+            )
      });
 
 

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {BrowserRouter} from "react-router-dom";
+import { Route } from "react-router-dom";
 import './App.css';
 
 
@@ -37,7 +39,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      name: "Zach",
       weatherColors: null,
       loginActive: false,
       SignupActive: false,
@@ -69,18 +70,28 @@ class App extends Component {
     
 
     return (
-      <div className="App">
-        <NavBar 
-          signUpVis = {this.state.SignupActive} 
-          sendData = {this.getClickStatus}
-          links = {tmpObject} 
-          />
-        <FrontPageHeader hidden = {this.state.hideIntroSec} />
-        <AuthenticateForm  logVisible = {this.state.loginActive} />
-        <AuthenticateForm formType = "signUp"  logVisible = {this.state.SignupActive} />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route exact path = "/"> 
+            <NavBar 
+              signUpVis = {this.state.SignupActive} 
+              sendData = {this.getClickStatus}
+              links = {tmpObject} 
+              />
+          </Route>
+          <Route path = "/login" id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"/>}/>
+          <Route path = "/sign-up" id = "loginPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
+
+        </div>
+      </BrowserRouter>
     );
   }
+
+
+
+
+
+
 
 
 
