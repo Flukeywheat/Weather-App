@@ -300,7 +300,7 @@ class  AuthenticateForm extends Component {
     if ( this.validateCurrentInputs(false) )
     {
       const data = this.formatStateForServer();
-      fetch('http://localhost:5000/login', data).then( (response) =>{
+      fetch('/login', data).then( (response) =>{
         console.log(response);
         
       } )
@@ -317,7 +317,7 @@ class  AuthenticateForm extends Component {
     if ( this.validateCurrentInputs(true) )
     {
       const data = this.formatStateForServer(); 
-      fetch('http://localhost:5000/signUp', data).then( (response) => {
+      fetch('/signUp', data).then( (response) => {
           if ( response )
           {
             return response.json();

@@ -18,14 +18,7 @@ app.use(cors());
 
 
 
-// passport.use(new googleStrategy({
-//     clientID: keys.googleClientID,
-//     clientSecret: keys.googleClientSecret,
-//     callbackURL: "http://localhost:3000/auth/google/callback"
-// }, async (token, tokenSecret, profile, done) =>{
-//     console.log(token);
-    
-// }));
+
 
 app.get("/", (req, res) =>{
 
@@ -35,13 +28,13 @@ app.get("/", (req, res) =>{
     }
     res.send("Thi sis a tst");
     
-    // console.log(req);
     
 })
 
 
 app.post("/login", async (req, res) =>{
     const newData = req.body;
+    console.log("login");
     
     
     
@@ -91,10 +84,7 @@ async function Save(data)
 
 
 
-// app.get("/", passport.authenticate("google", {
-//     scope: ["profile", "email"]
-//     }) 
-// );
+
 
 
 
