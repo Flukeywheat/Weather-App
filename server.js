@@ -4,6 +4,7 @@ const googleStrategy = require("passport-google-oauth20").Strategy;
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongo = require('./DatabaseCon/mongo');
+const path = require("path");
 // const keys = require("./config/keys");
 
 const app = express();
@@ -12,22 +13,18 @@ app.use(bodyParser.json({ extended: true }));
 app.use(cors());
 
 
+console.log(__dirname);
+
+app.use( "/static"  , express.static(path.join(__dirname , "build" , "static")));
 
 
 
 
 
 
+app.get("/*", (req, res) =>{
 
-
-app.get("/", (req, res) =>{
-
-    const tst = {
-        name: "Zaen",
-        messgage: "This is a test"
-    }
-    res.send("Thi sis a tst");
-    
+    res.sendFile(__dirname + "/build/index.html");
     
 })
 
