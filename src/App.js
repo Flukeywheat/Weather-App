@@ -40,9 +40,6 @@ class App extends Component {
 
     this.state = {
       weatherColors: null,
-      loginActive: false,
-      SignupActive: false,
-      hideIntroSec: false
     }
   }
 

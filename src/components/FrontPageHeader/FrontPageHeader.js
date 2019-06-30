@@ -14,7 +14,6 @@ class FrontPageHeader extends Component{
     
         this.state = {
           weatherColors: null,
-          hideIntroSec: null
         }
       }
 
