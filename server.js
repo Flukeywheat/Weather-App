@@ -4,7 +4,7 @@ const googleStrategy = require("passport-google-oauth20").Strategy;
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongo = require('./DatabaseCon/mongo');
-const path = require("path");
+const path = require('path');
 // const keys = require("./config/keys");
 
 const app = express();
@@ -16,17 +16,18 @@ app.use(cors());
 console.log(__dirname);
 
 app.use( "/static"  , express.static(path.join(__dirname , "build" , "static")));
+console.log(__dirname);
 
 
 
 
 
+app.get("/*" , (req, res) =>{
+    console.log(__dirname);
+    res.sendFile(__dirname + "/build/index.html" );
+});
 
-app.get("/*", (req, res) =>{
 
-    res.sendFile(__dirname + "/build/index.html");
-    
-})
 
 
 app.post("/login", async (req, res) =>{
@@ -87,8 +88,4 @@ async function Save(data)
 
 app.listen( (process.env.PORT || 5000) , () =>{
     console.log("Server is listening");
-    
-    
-
-
 })

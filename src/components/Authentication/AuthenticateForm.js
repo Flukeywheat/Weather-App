@@ -227,7 +227,7 @@ class  AuthenticateForm extends Component {
 
   returnFooter = () =>{
     return <div id="formFooter">
-              <a className="underlineHover" href="#">Forgot Password?</a>
+              <a className="underlineHover" >Forgot Password?</a>
             </div>
   }
   returnEmail_UserTakenP = (email_user) =>{
