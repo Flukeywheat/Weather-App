@@ -47,7 +47,6 @@ app.post("/login", async (req, res) =>{
 app.post("/signUp", async (req, res ) =>{
     const newData = req.body;
     
-    console.log("signUP");
     
 
     await Save(newData).then( (val) =>{

@@ -65,7 +65,6 @@ class connectAtlas{
             tmpObj.email = true;
             tmpObj.found = true;
         }
-        console.log(tmpObj);
         
         return tmpObj
             
@@ -105,7 +104,6 @@ class connectAtlas{
             else if ( err )
             {
                 console.log(err);
-                console.log("108");
                 
             }
         })
@@ -150,7 +148,6 @@ class connectAtlas{
                 {
                     retEmail_User.emailFound = true;
                 }
-                console.log(retEmail_User);
                 
                 return retEmail_User;
             }

@@ -181,23 +181,31 @@ class  AuthenticateForm extends Component {
 
   updateForm = (event, props) =>{
 
+
+    const input = event.target.value;
+    const tf = (input === "") ? false : true;
+
+
+
     switch (props) {
       case ("user"):
         this.setState({
-          user: event.target.value,
-          userValid: true
+          user: input,
+          userValid: tf
         });
         break;
       case ("password"):
+
         this.setState({
-          password: event.target.value,
-          passwordValid: true
+          password: input,
+          passwordValid: tf
         });
         break;
       case ("email"):
+
         this.setState({
-          email: event.target.value,
-          emailValid: true
+          email: input,
+          emailValid: tf
         });
         break;
       default:
@@ -374,8 +382,6 @@ class  AuthenticateForm extends Component {
             }
             
           
-          console.log(val);
-          
           
         });
         // this.toHome();
@@ -383,7 +389,7 @@ class  AuthenticateForm extends Component {
     else
     {
       
-      alert("Invalid Entry");
+      alert("Please fill out all fields");
     }
 
     }
