@@ -152,7 +152,7 @@ class  AuthenticateForm extends Component {
            {userTaken}
            <div className = "inputStyle">
             <label className = "inputLbl fadeIn second" htmlFor="userName"> Password</label>
-            <input onChange = {(event) => this.updateForm(event, "password")} type="text" id="password" className="whiteBox fadeIn third" name="login" placeholder={this.state.password}/>
+            <input onChange = {(event) => this.updateForm(event, "password")} type="password" id="password" className="whiteBox fadeIn third" name="login" placeholder={this.state.password}/>
            </div>
             <input onClick = {submitFunc} type="submit" className="fadeIn fourth" value = "Enter" />
             {formFooter}
@@ -245,7 +245,7 @@ class  AuthenticateForm extends Component {
   }
 
 
-  validateCurrentInputs = (signUp) =>{
+  validateCurrentInputs = (signUp) =>{ // checks to see if any fields are null 
     const validate = [ this.state.passwordValid, this.state.userValid];
 
     if (signUp)//check if Sign up Form 
@@ -258,17 +258,21 @@ class  AuthenticateForm extends Component {
       emailTaken : false,
       userTaken: false
     })
-    validate.forEach(element => {
-      if (element)
+
+    for ( let i = 0; i < validate.length; i++)
+    {
+      if ( validate[i])
       {
         sendToServer = true;
+
       }
       else
-      {
+      { 
         sendToServer = false;
+        break;
       }
-    });
-    return sendToServer
+    }
+    return sendToServer;
   }
 
 
@@ -327,9 +331,10 @@ class  AuthenticateForm extends Component {
         }
         
       })
-      
-      
-
+    }
+    else
+    {
+      alert("Please include both fields");
     }
     
   }
@@ -377,6 +382,7 @@ class  AuthenticateForm extends Component {
     }
     else
     {
+      
       alert("Invalid Entry");
     }
 

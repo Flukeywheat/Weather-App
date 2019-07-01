@@ -13,17 +13,14 @@ app.use(bodyParser.json({ extended: true }));
 app.use(cors());
 
 
-console.log(__dirname);
 
 app.use( "/static"  , express.static(path.join(__dirname , "build" , "static")));
-console.log(__dirname);
 
 
 
 
 
 app.get("/*" , (req, res) =>{
-    console.log(__dirname);
     res.sendFile(__dirname + "/build/index.html" );
 });
 
@@ -32,7 +29,6 @@ app.get("/*" , (req, res) =>{
 
 app.post("/login", async (req, res) =>{
     const newData = req.body;
-    console.log("login");
     
     
     
@@ -55,7 +51,6 @@ app.post("/signUp", async (req, res ) =>{
     
 
     await Save(newData).then( (val) =>{
-        console.log(val);
         
         res.send(val);
     });
