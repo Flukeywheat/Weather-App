@@ -8,6 +8,7 @@ import linksToArr from  "./components/Helper/GroupLinks";
 import NavBar from "./components/NavBar/NavBar";
 import AuthenticateForm from "./components/Authentication/AuthenticateForm";
 import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
+import SignedInPage from "./components/SignedInpage/SignedInPage";
 
 
 
@@ -66,11 +67,15 @@ class App extends Component {
   render(){
     
 
+
+
+
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar links = {tmpObject} />
-          <Route path  = "/" exact component =  {FrontPageHeader}/>
+          <NavBar path = "/" links = {tmpObject} />
+          <Route path = "/SignedIn" component = {SignedInPage}/>
+          <Route path  = {["/", "/SignedIn"]} exact component =  {FrontPageHeader}/>
           <Route path = "/login" exact id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"/>}/>
           <Route path = "/sign up" exact  id = "loginPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
 

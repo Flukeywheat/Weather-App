@@ -1,6 +1,5 @@
 import React from "react";
 import "./AmazonLinks.css";
-import { directive } from "@babel/types";
 
 
 const AmazonLinks = () =>{

@@ -1,0 +1,11 @@
+.LoginScreen{
+    background-color: white;
+    -webkit-box-shadow: 7px 10px 84px 29px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 10px 84px 29px rgba(0,0,0,0.75);
+    box-shadow: 7px 10px 84px 29px rgba(0,0,0,0.75);
+    position: relative;
+    width: auto;
+
+
+    z-index: 1;
+}
