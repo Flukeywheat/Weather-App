@@ -23,7 +23,8 @@ class  AuthenticateForm extends Component {
       email: null,
       emailValid: null,
       emailTaken: null,
-      redirect: false
+      redirect: false,
+      invalidUserPassword: false
     }
   }
 
@@ -106,6 +107,10 @@ class  AuthenticateForm extends Component {
     {
       userTaken = this.returnEmail_UserTakenP("Username");
       userNameInputStyling += " redBox";
+    }
+    if ( this.state.invalidUserPassword)
+    {
+      userTaken = this.returninvalidUser_PasswordLbl();
     }
 
 
@@ -227,14 +232,17 @@ class  AuthenticateForm extends Component {
 
   returnFooter = () =>{
     return <div id="formFooter">
-              <a className="underlineHover" >Forgot Password?</a>
+              <a onClick = {this.toHome} className="underlineHover" >Forgot Password?</a>
             </div>
   }
   returnEmail_UserTakenP = (email_user) =>{
     return <p className = "takenLbl"> {email_user} Already Taken</p>
   }
 
+  returninvalidUser_PasswordLbl = () =>{
+    return <p className = "takenLbl"> Invalid Username or Password</p>
 
+  }
 
 
   validateCurrentInputs = (signUp) =>{
@@ -301,14 +309,29 @@ class  AuthenticateForm extends Component {
     {
       const data = this.formatStateForServer();
       fetch('/login', data).then( (response) =>{
-        console.log(response);
+        if ( response.ok)
+        {
+          return response.json();
+        }
+      }).then( (val) =>{
+        if ( val )
+        {
+          alert("Successfully Signed in");
+          setTimeout(this.toHome() , 3000);
+        }
+        else
+        {
+          this.setState({
+            invalidUserPassword: true
+          })
+        }
         
-      } )
+      })
       
       
 
     }
-    // this.toHome
+    
   }
 
 
