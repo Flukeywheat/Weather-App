@@ -11,23 +11,26 @@ class FrontPageHeader extends Component{
 
     constructor(props) {
         super(props);
-    
+
+
+
         this.state = {
           weatherColors: null,
+          headerDelay:null
         }
-      }
+      };
 
 
 
-    render() {
-      let visible;
-      if ( this.props.hidden )  visible = "hidden";      
+     
+
+    render() {    
       
 
 
         return(
-        <div className = {visible}>
-           <IntroSec hidden = {visible} weather = {this.state.weatherColors} />
+        <div >
+           <IntroSec hDelay = {this.state.headerDelay} weather = {this.state.weatherColors} />
            <FrontForm />
            <Weather sendData = {this.getWeatherData} />
             

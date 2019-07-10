@@ -8,7 +8,7 @@ import "../FrontPageHeader/frontPageIntroComps/FrontForm/FrontForm.css";
 
 
 class  AuthenticateForm extends Component {
-
+  _isMounted = false
 
   constructor(props) {
     super(props);
@@ -28,6 +28,12 @@ class  AuthenticateForm extends Component {
     }
   }
 
+  componentDidMount(){
+    this._isMounted = true;
+  }
+  componentWillUnmount(){
+    this._isMounted = false;
+  }
     
 
   
@@ -44,12 +50,7 @@ class  AuthenticateForm extends Component {
       let submitFunc = this.checkUser; //Login Form Submit
 
 
-      if ( this.state.redirect)
-      {
-        return (
-            <Redirect to = "/" />
-        );
-      }
+      
       
 
 
@@ -63,7 +64,7 @@ class  AuthenticateForm extends Component {
 
 
 
-
+      
 
 
 
@@ -135,14 +136,18 @@ class  AuthenticateForm extends Component {
 
 
 
+    let SignIn = null
 
 
-
-
+    if ( this.state.redirect)
+      {
+        SignIn = <Redirect to = {{ pathname: "/SignedIn" , state: { fromsignedIn: true } }} />   
+      }
 
 
       return(
         <div id="formContent" className = {toggle} >
+            {SignIn}
             {SignUpAdditive}
             {emailTaken}
             <div  className = "inputStyle">
@@ -240,7 +245,7 @@ class  AuthenticateForm extends Component {
 
   returnFooter = () =>{
     return <div id="formFooter">
-              <a onClick = {this.toHome} className="underlineHover" >Forgot Password?</a>
+              <a  className="underlineHover" >Forgot Password?</a>
             </div>
   }
   returnEmail_UserTakenP = (email_user) =>{
@@ -316,10 +321,11 @@ class  AuthenticateForm extends Component {
 
 
 
-  checkUser = () =>{
+    checkUser  = () =>{
     if ( this.validateCurrentInputs(false) )
     {
       const data = this.formatStateForServer();
+      
       fetch('/login', data).then( (response) =>{
         if ( response.ok)
         {
@@ -329,7 +335,13 @@ class  AuthenticateForm extends Component {
         if ( val )
         {
           alert("Successfully Signed in");
-          setTimeout(this.toHome() , 3000);
+          this.props.auth(true)
+          if ( this._isMounted)
+          {
+            this.setState({
+              redirect: true
+            });
+          }
         }
         else
         {
@@ -384,21 +396,32 @@ class  AuthenticateForm extends Component {
           
           
         });
-        // this.toHome();
-    }
+      }
     else
-    {
+      {
       
       alert("Please fill out all fields");
-    }
+      }
 
-    }
+    };
+
+
 
 
     toHome = () =>{
-      this.setState({
-        redirect: true
-      });
+      if ( this._isMounted )
+      {
+        console.log("checkmount");
+        
+        this.setState({
+          redirect: true
+        });
+      }
+      else
+      {
+        alert("ahahhahahahahaaaaha");
+      }
+      
     }
 
 

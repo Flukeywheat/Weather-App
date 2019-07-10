@@ -39,10 +39,7 @@ const IntroSec= (props) =>{
         cssString =  BackColorClass.join(" ");
     }
     
-        
-
-
-    
+  
 
 
 
@@ -55,7 +52,7 @@ const IntroSec= (props) =>{
 
     return (
         <div className = {cssString}>
-            <h1  className = "h1FadeIn ">Hi</h1>
+            <h1  className = "h1FadeIn">Hi</h1>
             <p className = "pFadeIn ">Today's Recommendation: {clothRec} attire</p>
             
         </div>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import './App.css';
 
@@ -9,6 +10,7 @@ import NavBar from "./components/NavBar/NavBar";
 import AuthenticateForm from "./components/Authentication/AuthenticateForm";
 import FrontPageHeader from "./components/FrontPageHeader/FrontPageHeader";
 import SignedInPage from "./components/SignedInpage/SignedInPage";
+import { restElement, thisExpression } from '@babel/types';
 
 
 
@@ -40,7 +42,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      weatherColors: null,
+      authUser:false
     }
   }
 
@@ -65,8 +67,9 @@ class App extends Component {
 
 
   render(){
+    console.log(this.state);
     
-
+    
 
 
 
@@ -74,11 +77,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <NavBar path = "/" links = {tmpObject} />
-          <Route path = "/SignedIn" component = {SignedInPage}/>
-          <Route path  = {["/", "/SignedIn"]} exact component =  {FrontPageHeader}/>
-          <Route path = "/login" exact id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"/>}/>
-          <Route path = "/sign up" exact  id = "loginPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
-
+          <this.PrivateRoute path = "/SignedIn" exact component = {SignedInPage} />
+          <Route path  = "/" exact component =  {FrontPageHeader}/>
+          <Route path = "/login" exact id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"   auth = {this.getAuthUser}/>}/>
+          <Route path = "/sign up" exact  id = "signUpPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
         </div>
       </BrowserRouter>
     );
@@ -87,25 +89,46 @@ class App extends Component {
 
 
 
+ 
+
+  getAuthUser = (authorized) =>{
+    const user = (authorized) ? true : false;
+    alert("set true");   
+    this.setState({
+      authUser: user
+    });
+  };
+
+  checkAuth = () =>{
+    const tst = (this.state.authUser) ? true : false;
+    console.log(tst);
+    
+    return tst
+  }
+  
+
+   PrivateRoute = ({component: Component, ...rest}) =>{
+     console.log(this.checkAuth());
+     
+
+    if ( this.checkAuth())
+    {
+      console.log("check");
+      
+      return <Route {...rest} render = {props =>{
+        return <Component {...props}/>
+      }}/>
+    }
+    else
+    {
+      return <Redirect to = {{pathname:"/login"}} />
+    }
+
+   
+  };
+  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-getWeatherData = (weatherData) =>{
-  this.setState({
-    weatherColors: weatherData
-  })
-}
 
 
 
