@@ -77,8 +77,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <NavBar path = "/" links = {tmpObject} />
-          <this.PrivateRoute path = "/SignedIn" exact component = {SignedInPage} />
           <Route path  = "/" exact component =  {FrontPageHeader}/>
+          <PrivateRoute exact path = "/userpage" component = {SignedInPage} authed = {this.state.authUser} />
           <Route path = "/login" exact id = "loginPage"  exact component = {() => <AuthenticateForm formType = "login"   auth = {this.getAuthUser}/>}/>
           <Route path = "/sign up" exact  id = "signUpPage"  exact component = {() => <AuthenticateForm formType = "signUp"/>}/>
         </div>
@@ -92,40 +92,20 @@ class App extends Component {
  
 
   getAuthUser = (authorized) =>{
+    
+    
     const user = (authorized) ? true : false;
-    alert("set true");   
     this.setState({
       authUser: user
     });
+    console.log(this.state.authUser + "tst");
   };
 
-  checkAuth = () =>{
-    const tst = (this.state.authUser) ? true : false;
-    console.log(tst);
-    
-    return tst
-  }
+  
   
 
-   PrivateRoute = ({component: Component, ...rest}) =>{
-     console.log(this.checkAuth());
-     
-
-    if ( this.checkAuth())
-    {
-      console.log("check");
-      
-      return <Route {...rest} render = {props =>{
-        return <Component {...props}/>
-      }}/>
-    }
-    else
-    {
-      return <Redirect to = {{pathname:"/login"}} />
-    }
-
    
-  };
+   
   
 
 
@@ -136,7 +116,15 @@ class App extends Component {
 }
 
 
-
+function PrivateRoute({component: Component, authed, ...rest}){
+  console.log("something");
+  
+  return (
+    <Route {...rest} render = { (props) => {
+      return (authed) ? <Component {...props} /> : <Redirect to ={{pathname: "/login"}} />
+    }} />
+  )
+}
 
 
 
