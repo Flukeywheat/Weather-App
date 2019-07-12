@@ -5,7 +5,8 @@ import "./SignedInPage.css";
 const SignedInPage = (props) =>{
 
 
-
+    console.log("Signed IN");
+    
 
     return (
         <div className = "LoginScreen">

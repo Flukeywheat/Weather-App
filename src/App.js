@@ -67,7 +67,6 @@ class App extends Component {
 
 
   render(){
-    console.log(this.state);
     
     
 
@@ -117,13 +116,28 @@ class App extends Component {
 
 
 function PrivateRoute({component: Component, authed, ...rest}){
-  console.log("something");
+ 
   
-  return (
+
+  const tst =  (
     <Route {...rest} render = { (props) => {
       return (authed) ? <Component {...props} /> : <Redirect to ={{pathname: "/login"}} />
     }} />
-  )
+  );
+  console.log(tst);
+  console.log(authed);
+  
+
+  return (
+    <Route {...rest} render = { (props) => {
+      return (authed === true) ? <Component {...props} /> : <Redirect to = "/login" />
+    }} />
+  );
+
+
+  
+  
+
 }
 
 
